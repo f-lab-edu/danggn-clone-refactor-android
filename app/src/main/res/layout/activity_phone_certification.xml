@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="#232121"
+    android:orientation="vertical">
+
+
+    <ImageButton
+        android:id="@+id/ibt_phone_certification_back"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:background="#232121"
+        android:src="@drawable/baseline_arrow_back_24"
+        android:tint="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="InvalidId,MissingConstraints,UseAppTint" />
+
+    <LinearLayout
+        android:id="@+id/linear_tv_phone_certification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_phone_certification_back"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:gravity="left"
+            android:text="안녕하세요!"
+            android:textColor="@color/white"
+            android:textSize="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/phone_certification_back_button"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:gravity="left"
+            android:text="휴대폰 번호로 로그인해주세요."
+            android:textColor="@color/white"
+            android:textSize="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/안녕하세요_textview"
+            tools:ignore="MissingConstraints" />
+
+
+        <TextView
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:gravity="left"
+            android:text="휴대폰 번호는 안전하게 보관되며 이웃들에게 공개되지 않아요."
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/휴대폰번호로입력해주세요_textview"
+            tools:ignore="MissingConstraints" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_phone_certification_phone_number"
+            android:layout_width="380dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/white_line"
+            android:hint="   휴대폰 번호(-없이 숫자만 입력)"
+            android:inputType="number"
+            android:textColor="@color/white"
+            android:textColorHint="#a0a0a0"
+            tools:ignore="MissingConstraints" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <Button
+                android:id="@+id/bt_phone_certification_get_number"
+                android:layout_width="380dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/gray_line"
+                android:text="인증문자 받기"
+                android:textColor="#a0a0a0"
+                android:textSize="18dp"
+                tools:ignore="MissingConstraints" />
+
+
+            <Button
+                android:id="@+id/bt_phone_certification_get_renumber"
+                android:layout_width="380dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/white_line"
+                android:gravity="center"
+                android:text="인증문자 다시 받기"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.516"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="MissingConstraints,NotSibling" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <TextView
+            android:id="@+id/tv_phone_certification_countdown"
+            android:layout_width="380dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/white_line"
+            android:gravity="center"
+            android:text="00:00"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.516"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints,NotSibling" />
+
+
+        <EditText
+            android:id="@+id/et_phone_certification_number"
+            android:layout_width="380dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/white_line"
+            android:hint="   인증번호 입력"
+            android:inputType="number"
+            android:textColor="@color/white"
+            android:textColorHint="#a0a0a0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.516"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/certification_number_get_rebutton"
+            tools:ignore="MissingConstraints,TextFields" />
+
+        <TextView
+            android:id="@+id/tv_phone_certification_number_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="인증번호 제대로 입력해주세요"
+            android:textColor="#FF0000"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/certification_number_edittext"
+            tools:ignore="MissingConstraints" />
+
+
+        <Button
+            android:id="@+id/bt_phone_certification_number_ok"
+            android:layout_width="380dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/orange_box_circle"
+            android:text="인증번호 확인"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            tools:ignore="MissingConstraints" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
