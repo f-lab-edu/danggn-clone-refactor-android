@@ -1,4 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/nv_home"
+        android:icon="@drawable/home"
+        android:title="홈"
+        android:enabled="true"
+        tools:ignore="HardcodedText" />
 
+    <item
+        android:id="@+id/nv_dong_nae_life"
+        android:icon="@drawable/people"
+        android:title="동네생활"
+        android:enabled="true"
+        tools:ignore="HardcodedText" />
+
+
+    <item
+        android:id="@+id/nv_chatting"
+        android:icon="@drawable/chatting"
+        android:title="채팅"
+        android:enabled="true"
+        tools:ignore="HardcodedText" />
+
+    <item
+        android:id="@+id/nv_setting"
+        android:icon="@drawable/setting"
+        android:title="환경설정"
+        android:enabled="true"
+        tools:ignore="HardcodedText" />
 </menu>
