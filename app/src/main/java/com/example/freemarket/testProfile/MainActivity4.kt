@@ -1,4 +1,4 @@
-package com.example.freemarket.profiletest
+package com.example.freemarket.testProfile
 
 import android.net.Uri
 import android.os.Bundle

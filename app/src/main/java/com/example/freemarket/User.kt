@@ -1,4 +1,4 @@
 package com.example.freemarket
 
-class User {
+data class User(val phone: String) {
 }
