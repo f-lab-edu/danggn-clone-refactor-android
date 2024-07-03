@@ -63,51 +63,44 @@
             android:background="@color/white" />
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="350dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".fragment.MultiImageFragment">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_margin="10dp"
+                android:orientation="horizontal">
 
+                <LinearLayout
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/product_make_image_imagebutton"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/background_button"
-                android:scaleType="centerCrop"
-                android:src="@drawable/outline_crop_original_24"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/white"
-                tools:ignore="MissingConstraints" />
+                    <ImageView
+                        android:id="@+id/imageArea"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/chatting" />
 
+                    <TextView
+                        android:id="@+id/countArea"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0/0"
+                        android:textColor="#999999"
+                        android:textSize="14sp" />
+                </LinearLayout>
 
-            <TextView
-                android:id="@+id/product_make_image_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="이미지 추가"
-                android:textColor="@color/white"
-                android:textSize="14dp"
-                app:layout_constraintEnd_toEndOf="@+id/product_make_image_imagebutton"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/product_make_image_imagebutton"
-                tools:ignore="MissingConstraints" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/product_make_image_recyclerview"
-                android:layout_width="250dp"
-                android:layout_height="match_parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/product_make_image_imagebutton"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp" />
+            </LinearLayout>
+        </FrameLayout>
 
 
         <EditText
