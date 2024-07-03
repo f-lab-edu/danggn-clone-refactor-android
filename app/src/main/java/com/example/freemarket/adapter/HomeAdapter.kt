@@ -50,14 +50,12 @@ class HomeAdapter(private val context: Context, private val productList:ArrayLis
         }
 
         holder.homeUpdateDeleteDialog.setOnClickListener {
-            println(position.toString() + "positionpositionpositionpositionposition")
             showDialog(position)
         }
     }
 
     //값 갯수 리턴
     override fun getItemCount(): Int {
-
         return productList.size
     }
 
