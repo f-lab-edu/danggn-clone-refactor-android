@@ -1,10 +1,14 @@
 package com.example.freemarket
 
+import android.Manifest
 import android.annotation.SuppressLint
-import android.content.Context
+import android.app.PendingIntent
 import android.content.Intent
+import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.telephony.SmsManager
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -14,16 +18,21 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import java.util.Locale
+import java.util.Random
 
 class PhoneCertificationActivity : AppCompatActivity() {
 
     var mCountDownTimer: CountDownTimer? = null
 
-    //숫자를 크게한 이유는 countdowninterval가 1000의 1초이기 때문이다
-    var mTimeLeftInMillis: Long = 10000
+    //1000 == 1초
+    var mTimeLeftInMillis: Long = 300000
 
-    @SuppressLint("MissingInflatedId")
+
+    val SMS_SEND_PERMISSON = 1
+    @SuppressLint("MissingInflatedId", "CommitPrefEdits")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_phone_certification)
@@ -44,6 +53,32 @@ class PhoneCertificationActivity : AppCompatActivity() {
         firstActivityGone()
 
 
+        val preferences: SharedPreferences = getSharedPreferences("휴대폰인증번호", MODE_PRIVATE)
+
+
+
+
+        val permissonCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS)
+        if (permissonCheck != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(
+                    this,
+                    Manifest.permission.SEND_SMS
+                )
+            ) {
+                Toast.makeText(this, "권한이 필요합니다", Toast.LENGTH_SHORT).show()
+            }
+
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf<String>(Manifest.permission.SEND_SMS),
+                SMS_SEND_PERMISSON
+            )
+        }
+
+
+
+
+
         //백버튼
         ibtPhoneCertificationBack.setOnClickListener(View.OnClickListener {
             onBackPressed()
@@ -55,29 +90,44 @@ class PhoneCertificationActivity : AppCompatActivity() {
             btPhoneCertificationGetNumber.setVisibility(View.GONE)
             startTimer()
             firstActivityVisible()
+
+            var check_nubmer = numberGen(4, 1)
+            sendSMS(etPhoneCertificationPhoneNumber.text.toString(), "" + check_nubmer)
+
+
+            val editor = preferences.edit()
+            editor.putString("인증번호", check_nubmer)
+            editor.apply()
         })
+
+
 
         //인증번호 확인
         btPhoneCertificationNumberOk.setOnClickListener(View.OnClickListener {
-            if (etPhoneCertificationNumber.text.length == 0){
+            if (etPhoneCertificationNumber.text.length == 0) {
                 Toast.makeText(
                     this@PhoneCertificationActivity,
                     "인증번호를 입력해주세요",
                     Toast.LENGTH_SHORT
                 )
                     .show()
-            }else if(etPhoneCertificationNumber.text.length < 4 || etPhoneCertificationNumber.text.length > 4){
+            } else if (etPhoneCertificationNumber.text.length < 4 || etPhoneCertificationNumber.text.length > 4) {
                 Toast.makeText(
                     this@PhoneCertificationActivity,
                     "4자리를 입력해주세요",
                     Toast.LENGTH_SHORT
                 )
                     .show()
-            }else{
+            }else  {
                 mCountDownTimer?.cancel()
 
                 val intent = Intent(this, SignUpActivity::class.java)
+                intent.putExtra("phone",etPhoneCertificationPhoneNumber.text.toString())
                 startActivity(intent)
+
+
+                val editor = preferences.edit()
+                editor.remove(etPhoneCertificationNumber.text.toString())
 
                 // 이전 키를 눌렀을 때 스플래스 스크린 화면으로 이동을 방지하기 위해
                 // 이동한 다음 사용안함으로 finish 처리
@@ -89,7 +139,6 @@ class PhoneCertificationActivity : AppCompatActivity() {
         btPhoneCertificationGetReNumber.setOnClickListener(View.OnClickListener {
             Toast.makeText(this@PhoneCertificationActivity, "인증번호를 전송했습니다", Toast.LENGTH_SHORT)
                 .show()
-            updateCountDownText(false)
             resetTimer()
         })
 
@@ -111,7 +160,6 @@ class PhoneCertificationActivity : AppCompatActivity() {
                 }
             }
         })
-
 
 
     }
@@ -159,7 +207,7 @@ class PhoneCertificationActivity : AppCompatActivity() {
         mCountDownTimer = object : CountDownTimer(mTimeLeftInMillis, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 mTimeLeftInMillis = millisUntilFinished
-                updateCountDownText(true)
+                updateCountDownText()
             }
 
             override fun onFinish() {
@@ -177,24 +225,57 @@ class PhoneCertificationActivity : AppCompatActivity() {
     private fun resetTimer() {
         //카운터 재갱신
         mCountDownTimer?.cancel()
-        mTimeLeftInMillis = 10000
+        mTimeLeftInMillis = 300000
         startTimer()
     }
 
-    private fun updateCountDownText(start: Boolean) {
-        if (start) {
-            val tvPhoneCertificationCountdown =
-                findViewById<TextView>(R.id.tv_phone_certification_countdown)
-            val minutes: Int = (mTimeLeftInMillis / 1000).toInt() / 60
-            val seconds: Int = (mTimeLeftInMillis / 1000).toInt() % 60
-            val timeLeftFormatted =
-                String.format(Locale.getDefault(), "(%02d:%02d)", minutes, seconds)
+    private fun updateCountDownText() {
+        val tvPhoneCertificationCountdown =
+            findViewById<TextView>(R.id.tv_phone_certification_countdown)
+        val minutes: Int = (mTimeLeftInMillis / 1000).toInt() / 60
+        val seconds: Int = (mTimeLeftInMillis / 1000).toInt() % 60
+        val timeLeftFormatted =
+            String.format(Locale.getDefault(), "(%02d:%02d)", minutes, seconds)
 
-            //타이머 값을 보여주게 한다
-            tvPhoneCertificationCountdown.setText(timeLeftFormatted)
+        //타이머 값을 보여주게 한다
+        tvPhoneCertificationCountdown.setText(timeLeftFormatted)
+    }
+
+
+
+    //인증번호를 랜덤으로 만드는 클래스
+    //len-생성할 번호 난수
+    //dupcd-중복 허용 여부 1-중복허용 2-중복제거
+    fun numberGen(len: Int, dupCd: Int): String {
+        val random = Random()
+        var numStr = ""
+        var i = 0
+        while (i < len) {
+            //0~9까지 난수 생성
+            val ran = random.nextInt(10).toString()
+
+            //중복을 허용하지 않을시 중복된 값이 있는지 검사한다
+            if (dupCd == 1) {
+                //중복된 값이 없으면 numStr에 적용
+                numStr += ran
+            } else if (dupCd == 2) {
+                if (!numStr.contains(ran)) {
+                    numStr += ran
+                } else {
+                    i -= 1
+                }
+            }
+            i++
         }
-        else{
-            return
+        return numStr
+    }
+
+    private fun sendSMS(phoneNumber: String, message: String) {
+        var sms: SmsManager? = null
+        sms = SmsManager.getDefault()
+
+        if (sms != null) {
+            sms.sendTextMessage(phoneNumber, null, message, null, null)
         }
     }
 }

@@ -75,6 +75,14 @@
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="15dp" />
 
+    <ProgressBar
+        android:id="@+id/laoding"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:backgroundTint="@color/white"
+        android:layout_gravity="center"
+        />
+
     <Button
         android:id="@+id/bt_sign_up_activity_finish"
         android:layout_width="match_parent"
