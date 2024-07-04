@@ -13,7 +13,40 @@
         android:theme="@style/Theme.FreeMarket"
         tools:targetApi="31">
         <activity
+<<<<<<< Updated upstream
             android:name=".SignUpActivity"
+=======
+            android:name=".LoadingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SplashActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.test.MainActivity3"
+            android:exported="false" />
+        <activity
+            android:name=".myProduct.ProductSelectUpdateActivity"
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name="com.example.test.UserUpdateActivity" -->
+        <!-- android:exported="false" /> -->
+        <!-- <activity -->
+        <!-- android:name="com.example.test.UserListActivity" -->
+        <!-- android:exported="false" /> -->
+        <activity
+            android:name=".myProduct.ProductAddActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.test.OTPActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.test.MainActivity2"
+            android:exported="false" />
+        <activity
+            android:name="com.example.test.FirebasePhone"
+            android:exported="false" />
+        <activity
+            android:name=".MainMenuActivity"
+>>>>>>> Stashed changes
             android:exported="false" />
         <activity
             android:name=".PhoneCertificationActivity"
@@ -22,7 +55,11 @@
             android:name=".MainActivity"
             android:exported="true" /> <!-- Theme.AppCompat 다른 테마를 사용할수 있게 해주는 라이브러리 -->
         <activity
+<<<<<<< Updated upstream
             android:name=".SplashActivity"
+=======
+            android:name=".SignUpActivity"
+>>>>>>> Stashed changes
             android:exported="true"
             android:theme="@style/Theme.AppCompat">
             <intent-filter>
