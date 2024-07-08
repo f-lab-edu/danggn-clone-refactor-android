@@ -12,18 +12,3 @@ import com.example.freemarket.R
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [TestFragment1.newInstance] factory method to
- * create an instance of this fragment.
- */
-class TestFragment1 : Fragment() {
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_test1, container, false)
-    }
-
-}
