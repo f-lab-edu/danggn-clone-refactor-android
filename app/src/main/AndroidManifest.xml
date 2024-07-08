@@ -37,12 +37,7 @@
             android:exported="false" />
         <activity
             android:name=".myProduct.ProductSelectUpdateActivity"
-            android:exported="false" /> <!-- <activity -->
-        <!-- android:name="com.example.test.UserUpdateActivity" -->
-        <!-- android:exported="false" /> -->
-        <!-- <activity -->
-        <!-- android:name="com.example.test.UserListActivity" -->
-        <!-- android:exported="false" /> -->
+            android:exported="false" />
         <activity
             android:name=".myProduct.ProductAddActivity"
             android:exported="false" />
@@ -59,24 +54,30 @@
             android:name=".SignUpActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.test.FirebasePratice"
+            android:name=".SplashActivity"
+            android:exported="false"
+            tools:ignore="DuplicateActivity" />
+
+        <activity
+            android:name=".MainMenuActivity"
             android:exported="false" />
+
+
         <activity
             android:name="com.example.test.PhoneActivity"
             android:exported="false" />
         <activity
             android:name="com.example.test.Camera"
             android:exported="false" />
-        <activity
-            android:name=".testProfile.MainActivity4"
-            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
-            android:exported="true" /> <!-- Theme.AppCompat 다른 테마를 사용할수 있게 해주는 라이브러리 -->
+            android:exported="true" />
         <activity
             android:name=".MainMenuActivity"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat">
+            android:theme="@style/Theme.AppCompat"
+            tools:ignore="DuplicateActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
