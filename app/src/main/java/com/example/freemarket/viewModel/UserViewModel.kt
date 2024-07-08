@@ -1,14 +1,5 @@
 package com.example.freemarket.viewModel
 
-<<<<<<< Updated upstream
-class UserViewModel {
-=======
-import com.example.freemarket.dto.ProfileDto
-import com.example.freemarket.repository.LoginUserChekingDB
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
-
 
 class UserViewModel{
     fun getUserData() {
@@ -27,5 +18,4 @@ class UserViewModel{
             }
         })
     }
->>>>>>> Stashed changes
 }

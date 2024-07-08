@@ -1,5 +1,7 @@
 package com.example.freemarket
 
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -7,25 +9,12 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-<<<<<<< Updated upstream
-
-
-class SignUpActivity : AppCompatActivity() {
-=======
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.bumptech.glide.request.RequestOptions
-import com.example.freemarket.databinding.ActivityProductAddBinding
 import com.example.freemarket.databinding.ActivitySignUpBinding
-import com.example.freemarket.dto.ProfileDto
-import com.example.freemarket.fragment.HomeFragment
 import com.example.freemarket.repository.SignUserDB
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
-
 
 class SignUpActivity : AppCompatActivity() {
     private val REQUEST_IMAGE_CAPTURE = 101
@@ -36,14 +25,11 @@ class SignUpActivity : AppCompatActivity() {
         ActivitySignUpBinding.inflate(layoutInflater)
     }
 
->>>>>>> Stashed changes
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         binding.laoding.visibility = View.INVISIBLE
-
-
-<<<<<<< Updated upstream
 //이미지 선택 - 갤러리 , 촬영 , 기본이미지
         //
 
@@ -63,7 +49,7 @@ class SignUpActivity : AppCompatActivity() {
         //인증번호 확인
         finishButton.setOnClickListener(View.OnClickListener {
             if (profileNick.text.length == 0){
-=======
+
         //이미지 선택 - 갤러리 , 촬영 , 기본이미지
         val pickImage = registerForActivityResult(ActivityResultContracts.GetContent()) {
             binding.ivSignUpActivityProfileImage.setImageURI(it)
@@ -107,31 +93,31 @@ class SignUpActivity : AppCompatActivity() {
         //인증번호 확인
         binding.btSignUpActivityFinish.setOnClickListener(View.OnClickListener {
             if (binding.etSignUpActivityProfileNick.text.length == 0) {
->>>>>>> Stashed changes
+
                 Toast.makeText(
                     this@SignUpActivity,
                     "닉네임을 입력해주세요",
                     Toast.LENGTH_SHORT
                 )
                     .show()
-<<<<<<< Updated upstream
+
             }else if(profileNick.text.length ==  1){
-=======
+
             } else if (binding.etSignUpActivityProfileNick.text.length == 1) {
->>>>>>> Stashed changes
+
                 Toast.makeText(
                     this@SignUpActivity,
                     "2자리 이상 입력해주세요",
                     Toast.LENGTH_SHORT
                 )
                     .show()
-<<<<<<< Updated upstream
+
             }else{
-=======
+
             }
             else {
                 val name = binding.etSignUpActivityProfileNick.text.toString()
->>>>>>> Stashed changes
+
 
                 //? - null일 가능성 있는 변수임을 알려줌
                 //let - 만약에 not null 일 경우 사용하는 함수
@@ -144,8 +130,7 @@ class SignUpActivity : AppCompatActivity() {
             }
         })
     }
-<<<<<<< Updated upstream
-=======
+
 
 
     // 카메라 권한 확인 및 요청
@@ -205,5 +190,4 @@ class SignUpActivity : AppCompatActivity() {
             RequestOptions().circleCrop()
         }
     }
->>>>>>> Stashed changes
 }
