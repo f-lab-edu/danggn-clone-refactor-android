@@ -1,18 +1,8 @@
-package com.example.freemarket.profiletest
+package com.example.freemarket.dto
 
-<<<<<<< Updated upstream
-data class Contacts(
-    val id: String? = null,
-    val name: String? = null,
-    val phoneNumber: String? = null,
-    val imgUri: String? = null
-)
-=======
 data class ProfileDto(
+    var key: String? = null,
     var name: String? = null,
     val imgUri: String? = null,
     val phone: String? = null
-) {
-    constructor() : this("", "", "")
-}
->>>>>>> Stashed changes
+)

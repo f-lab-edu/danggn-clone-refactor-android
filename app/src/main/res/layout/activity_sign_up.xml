@@ -75,10 +75,6 @@
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="15dp" />
 
-<<<<<<< Updated upstream
-    <Button
-        android:id="@+id/bt_sign_up_activity_finish"
-=======
     <ProgressBar
         android:id="@+id/laoding"
         android:layout_width="72dp"
@@ -86,9 +82,8 @@
         android:layout_gravity="center"
         android:backgroundTint="@color/white" />
 
-<!--    최하단 으로 보내기 위함-->
+    <!--    최하단 으로 보내기 위함-->
     <LinearLayout
->>>>>>> Stashed changes
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">

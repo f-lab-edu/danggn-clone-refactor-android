@@ -1,15 +1,15 @@
 package com.example.freemarket
 
+import android.Manifest
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
-<<<<<<< Updated upstream:app/src/main/java/com/example/freemarket/SignUpActivity.kt
-import androidx.appcompat.app.AppCompatActivity
-
-
-class SignUpActivity : AppCompatActivity() {
-=======
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -33,18 +33,11 @@ class SignUpAndUpdateActivity : AppCompatActivity() {
         ActivitySignUpBinding.inflate(layoutInflater)
     }
 
->>>>>>> Stashed changes:app/src/main/java/com/example/freemarket/SignUpAndUpdateActivity.kt
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_up)
+        setContentView(binding.root)
+        binding.laoding.visibility = View.INVISIBLE
 
-//이미지 선택 - 갤러리 , 촬영 , 기본이미지
-        //
-
-<<<<<<< Updated upstream:app/src/main/java/com/example/freemarket/SignUpActivity.kt
-        val profileImage =
-            findViewById<ImageView>(R.id.iv_sign_up_activity_profile_image)
-=======
         val localDB = LocalDB()
         val getLocalData = localDB.getLocalData(this)!!
         val existingKey = getLocalData.getString("key", "")!!
@@ -70,6 +63,7 @@ class SignUpAndUpdateActivity : AppCompatActivity() {
             uri?.let { it1 ->
                 profileUpdate.profileUpdate(applicationContext,this, existingKey, updateName, it1)
             }
+            binding.laoding.visibility = View.VISIBLE
         }
 
 
@@ -100,15 +94,8 @@ class SignUpAndUpdateActivity : AppCompatActivity() {
                 binding.laoding.visibility = View.VISIBLE
             }
         })
->>>>>>> Stashed changes:app/src/main/java/com/example/freemarket/SignUpAndUpdateActivity.kt
 
-        val selectImage =
-            findViewById<ImageButton>(R.id.imb_sign_up_activity_select_image)
 
-<<<<<<< Updated upstream:app/src/main/java/com/example/freemarket/SignUpActivity.kt
-        val profileNick =
-            findViewById<EditText>(R.id.et_sign_up_activity_profile_nick)
-=======
         //이미지 선택 - 갤러리 , 촬영 , 기본이미지
         val pickImage = registerForActivityResult(ActivityResultContracts.GetContent()) {
             binding.imvSignUpActivityProfileImage.setImageURI(it)
@@ -116,35 +103,39 @@ class SignUpAndUpdateActivity : AppCompatActivity() {
                 uri = it
             }
         }
->>>>>>> Stashed changes:app/src/main/java/com/example/freemarket/SignUpAndUpdateActivity.kt
-
-        val finishButton =
-            findViewById<Button>(R.id.bt_sign_up_activity_finish)
 
 
-<<<<<<< Updated upstream:app/src/main/java/com/example/freemarket/SignUpActivity.kt
-        //인증번호 확인
-        finishButton.setOnClickListener(View.OnClickListener {
-            if (profileNick.text.length == 0){
-                Toast.makeText(
-                    this@SignUpActivity,
-                    "닉네임을 입력해주세요",
-                    Toast.LENGTH_SHORT
-                )
-                    .show()
-            }else if(profileNick.text.length ==  1){
-                Toast.makeText(
-                    this@SignUpActivity,
-                    "2자리 이상 입력해주세요",
-                    Toast.LENGTH_SHORT
-                )
-                    .show()
-            }else{
+        binding.imbSignUpActivitySelectImage.setOnClickListener(View.OnClickListener {
+            val dialog = android.app.Dialog(this)
+            dialog.setContentView(R.layout.dialog_sign_up_image)
+            dialog.setCanceledOnTouchOutside(true)
+            dialog.setCancelable(true)
+            dialog.show()
 
+
+            //직접 촬영
+            val camera = dialog.findViewById<Button>(R.id.bt_sign_up_dialog_camera)
+            camera.setOnClickListener() {
+                checkCameraPermission()
+                dialog.dismiss()
+            }
+
+            //갤러리
+            val gallery = dialog.findViewById<Button>(R.id.bt_sign_up_dialog_gallery)
+            gallery.setOnClickListener() {
+                dialog.dismiss()
+                pickImage.launch("image/*")
+            }
+
+            //기본 이미지
+            val base = dialog.findViewById<Button>(R.id.bt_sign_up_dialog_base_image)
+            base.setOnClickListener() {
+                defaultImage()
+                dialog.dismiss()
             }
         })
-    }
-=======
+
+
     }
 
 
@@ -203,5 +194,4 @@ class SignUpAndUpdateActivity : AppCompatActivity() {
             RequestOptions().circleCrop()
         }
     }
->>>>>>> Stashed changes:app/src/main/java/com/example/freemarket/SignUpAndUpdateActivity.kt
 }

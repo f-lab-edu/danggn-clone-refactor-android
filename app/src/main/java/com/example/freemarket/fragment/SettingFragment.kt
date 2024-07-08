@@ -1,7 +1,5 @@
-package com.example.freemarket.fragment 
+package com.example.freemarket.fragment
 
-<<<<<<< Updated upstream
-=======
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -47,4 +45,3 @@ class SettingFragment : Fragment() {
         binding.tvProfileNameSetting.setText(userName)
     }
 }
->>>>>>> Stashed changes
