@@ -50,15 +50,16 @@
 
 
         <activity
-            android:name="com.example.test.MainActivity2"
-            android:exported="false" />
-
-        <activity
             android:name=".SignUpActivity"
             android:exported="false" />
         <activity
             android:name="com.example.test.FirebasePratice"
             android:exported="false" />
+
+        <activity
+            android:name=".PhoneCertificationActivity"
+            android:exported="false" />
+
         <activity
             android:name="com.example.test.PhoneActivity"
             android:exported="false" />

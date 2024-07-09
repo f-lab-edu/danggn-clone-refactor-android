@@ -1,11 +1,9 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-
+    id("com.google.gms.google-services")
     // for Java or mixed Java and Kotlin
     id("androidx.navigation.safeargs.kotlin")
-    id("com.google.gms.google-services")
-
 }
 
 
@@ -56,9 +54,18 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.firebase.database)
-    implementation(libs.firebase.auth)
-    implementation(libs.firebase.storage)
+
+
+
+    //밑에 있는게 뭐라고 안되는걸까?
+    //libs는 라이브러리 약자
+    //libs.firebase.database 와 com.google.firebase:firebase-database:21.0.0의 차이점
+//    implementation(libs.firebase.database)
+//    implementation(libs.firebase.auth)
+//    implementation(libs.firebase.storage)
+//    implementation(libs.androidx.library)
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -95,3 +102,4 @@ dependencies {
 }
 
 //apply { plugin("com.google.gms.google-services") }
+
