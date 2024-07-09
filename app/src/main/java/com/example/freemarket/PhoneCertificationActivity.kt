@@ -118,7 +118,9 @@ class PhoneCertificationActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 )
                     .show()
-            }else  {
+
+            } else if(preferences.getString("인증번호", "").equals(etPhoneCertificationNumber.text.toString())) {
+
                 mCountDownTimer?.cancel()
 
                 val intent = Intent(this, SignUpActivity::class.java)

@@ -16,36 +16,56 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
 class SignUserDB {
+
     fun signingUser(context: SignUpActivity, name: String, phone: String, uri: Uri) {
         val firebaseRef: DatabaseReference
         val storageRef: StorageReference
         val localDB = LocalDB()
 
-        firebaseRef = FirebaseDatabase.getInstance().getReference("user")
-        storageRef = FirebaseStorage.getInstance().getReference("profileImage")
+        fun signingUser(context: SignUpActivity, name: String, uri: Uri) {
+            val firebaseRef: DatabaseReference
+            val storageRef: StorageReference
 
-        val contactId = firebaseRef.push().key!!
-        var contacts: ProfileDto
 
-        uri.let {
-            storageRef.child(contactId).putFile(it)
-                .addOnSuccessListener { task ->
-                    task.metadata!!.reference!!.downloadUrl
-                        .addOnSuccessListener { url ->
-                            val imgUrl = url.toString()
-                            contacts = ProfileDto(name, imgUrl,phone)
-                            firebaseRef.child(contactId).setValue(contacts)
-                                .addOnCompleteListener {
-                                    localDB.saveLocalData(context,phone,name,imgUrl)
-                                    val intent = Intent(context, MainMenuActivity::class.java)
-                                    context.startActivity(intent)
-                                    context.finish()
 
-                                }
-                                .addOnFailureListener { error ->
-                                }
-                        }
-                }
+            firebaseRef = FirebaseDatabase.getInstance().getReference("user")
+            storageRef = FirebaseStorage.getInstance().getReference("profileImage")
+
+            val contactId = firebaseRef.push().key!!
+            var contacts: ProfileDto
+
+            uri.let {
+                storageRef.child(contactId).putFile(it)
+                    .addOnSuccessListener { task ->
+                        task.metadata!!.reference!!.downloadUrl
+                            .addOnSuccessListener { url ->
+                                val imgUrl = url.toString()
+
+                                contacts = ProfileDto(name, imgUrl, phone)
+                                firebaseRef.child(contactId).setValue(contacts)
+                                    .addOnCompleteListener {
+                                        localDB.saveLocalData(context, phone, name, imgUrl)
+                                        val intent = Intent(context, MainMenuActivity::class.java)
+                                        context.startActivity(intent)
+                                        context.finish()
+
+
+                                        contacts = ProfileDto(name, imgUrl)
+                                        firebaseRef.child(contactId).setValue(contacts)
+                                            .addOnCompleteListener {
+                                                val intent =
+                                                    Intent(context, MainMenuActivity::class.java)
+                                                context.startActivity(intent)
+                                                context.finish()
+
+                                            }
+                                            .addOnFailureListener { error ->
+                                            }
+                                    }
+                            }
+                    }
+            }
         }
     }
 }
+

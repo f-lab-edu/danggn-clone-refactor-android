@@ -49,6 +49,12 @@
         <activity
             android:name="com.example.test.FirebasePhone"
             android:exported="false" />
+
+
+        <activity
+            android:name="com.example.test.MainActivity2"
+            android:exported="false" />
+
         <activity
             android:name=".SignUpActivity"
             android:exported="false" />
@@ -65,8 +71,15 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" />
+
+
         <activity
-            android:name=".SplashActivity"
+            android:name=".MainMenuActivity"
+            android:exported="false" />
+
+
+        <activity
+            android:name=".MainMenuActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat"
             tools:ignore="DuplicateActivity">
