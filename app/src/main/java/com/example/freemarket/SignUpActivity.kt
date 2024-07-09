@@ -37,12 +37,16 @@ class SignUpActivity : AppCompatActivity() {
     private val SignUser = SignUserDB()
     private val binding: ActivitySignUpBinding by lazy {
         ActivitySignUpBinding.inflate(layoutInflater)
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         binding.laoding.visibility = View.INVISIBLE
+
+//이미지 선택 - 갤러리 , 촬영 , 기본이미지
+
 
 
         val phone = intent.getStringExtra("phone")
