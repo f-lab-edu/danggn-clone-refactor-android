@@ -33,9 +33,7 @@
         <activity
             android:name=".SplashActivity"
             android:exported="false" />
-        <activity
-            android:name="com.example.test.MainActivity3"
-            android:exported="false" />
+
         <activity
             android:name=".myProduct.ProductSelectUpdateActivity"
             android:exported="false" />

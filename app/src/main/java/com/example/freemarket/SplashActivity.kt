@@ -71,7 +71,6 @@ class SplashActivity : AppCompatActivity() {
     override fun onStart() {
         val model = UserViewModel()
         super.onStart()
-        println(model.getUserData().toString() +  "  model.getUserData()model.getUserData()")
     }
 
 
