@@ -5,4 +5,5 @@ data class ProfileDto(
     var name: String? = null,
     val imgUri: String? = null,
     val phone: String? = null
+
 )

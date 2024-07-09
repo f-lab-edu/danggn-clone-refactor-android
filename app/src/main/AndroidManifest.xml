@@ -2,6 +2,23 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,45 +30,55 @@
         android:theme="@style/Theme.FreeMarket"
         tools:targetApi="31">
         <activity
-            android:name=".CategoryActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainMenuActivity"
+            android:name=".SplashActivity"
             android:exported="false" />
         <activity
             android:name="com.example.test.MainActivity3"
             android:exported="false" />
         <activity
             android:name=".myProduct.ProductSelectUpdateActivity"
-            android:exported="false" /> <!-- <activity -->
-        <!-- android:name="com.example.test.UserUpdateActivity" -->
-        <!-- android:exported="false" /> -->
-        <!-- <activity -->
-        <!-- android:name="com.example.test.UserListActivity" -->
-        <!-- android:exported="false" /> -->
+            android:exported="false" />
         <activity
             android:name=".myProduct.ProductAddActivity"
             android:exported="false" />
         <activity
             android:name="com.example.test.OTPActivity"
             android:exported="false" />
+
         <activity
             android:name="com.example.test.FirebasePhone"
             android:exported="false" />
         <activity
-            android:name=".SignUpAndUpdateActivity"
+            android:name=".SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SplashActivity"
+            android:exported="false"
+            tools:ignore="DuplicateActivity" />
+
+        <activity
+            android:name=".MainMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PhoneCertificationActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.test.PhoneActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.test.Camera"
+            android:exported="false" />
+        <activity
+            android:name=".testProfile.MainActivity4"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true" /> <!-- Theme.AppCompat 다른 테마를 사용할수 있게 해주는 라이브러리 -->
+            android:exported="true" />
         <activity
-            android:name=".PhoneCertificationActivity"
+            android:name=".MainMenuActivity"
             android:exported="true"
-            tools:ignore="DuplicateActivity" />
-        <activity
-            android:name=".SplashActivity"
-            android:exported="true"
-            android:theme="@style/Theme.AppCompat">
+            android:theme="@style/Theme.AppCompat"
+            tools:ignore="DuplicateActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -4,7 +4,6 @@ import android.net.Uri
 
 data class ProductDto(
     var productSubject: String, //상품 제목
-//    var productCategory: String, //상품 카테고리
     var productPrice: String, //상품 가격
     var productLocation: String, //상품 거래지역
     var productContent: String, //상품 내용

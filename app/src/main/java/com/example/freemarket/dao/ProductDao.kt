@@ -6,7 +6,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.Query
 
-//Dao란 디비의 데이터에 접근하기 위해 만든것
+//Dao란 디비의 데이터에 접근하기 위한것
 class ProductDao {
     private var databaseReference: DatabaseReference? = null
 
@@ -27,7 +27,7 @@ class ProductDao {
 
     //수정
     fun update(key: String, hashMap: HashMap<String, Any>): Task<Void>{
-        return databaseReference!!.child(key).updateChildren(hashMap)
+        return databaseReference!!.child(key)!!.updateChildren(hashMap)
     }
 
     //삭제

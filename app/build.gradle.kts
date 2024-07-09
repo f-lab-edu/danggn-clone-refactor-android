@@ -2,7 +2,11 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("com.google.gms.google-services")
+    // for Java or mixed Java and Kotlin
+    id("androidx.navigation.safeargs.kotlin")
 }
+
+
 
 android {
     namespace = "com.example.freemarket"
@@ -31,6 +35,7 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+
     }
     kotlinOptions {
         jvmTarget = "1.8"
@@ -41,12 +46,15 @@ android {
     }
 }
 
+
 dependencies {
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+
 
 
     //밑에 있는게 뭐라고 안되는걸까?
@@ -56,6 +64,7 @@ dependencies {
 //    implementation(libs.firebase.auth)
 //    implementation(libs.firebase.storage)
 //    implementation(libs.androidx.library)
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -91,3 +100,6 @@ dependencies {
     implementation("com.google.firebase:firebase-storage")
 
 }
+
+//apply { plugin("com.google.gms.google-services") }
+

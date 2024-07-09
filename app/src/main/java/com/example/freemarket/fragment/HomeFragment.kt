@@ -1,7 +1,6 @@
 package com.example.freemarket.fragment
-
+// 홈 수정
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,13 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.freemarket.CategoryActivity
 import com.example.freemarket.R
-import com.example.freemarket.SignUpAndUpdateActivity
 import com.example.freemarket.adapter.HomeAdapter
 import com.example.freemarket.dao.ProductDao
-import com.example.freemarket.databinding.FragmentHomeBinding
-import com.example.freemarket.databinding.FragmentSettingBinding
 import com.example.freemarket.dto.ProductDto
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -28,20 +23,18 @@ class HomeFragment : Fragment() {
 
     lateinit var productList: ArrayList<ProductDto>
 
-    private lateinit var binding: FragmentHomeBinding
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
-        return binding.root
+        return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val rvHomeFragment = view.findViewById<RecyclerView>(R.id.rv_home_fragment)
 
 
         //userList 초기화
@@ -51,20 +44,14 @@ class HomeFragment : Fragment() {
         dao = ProductDao()
 
         //adapter 초기화
-        adapter = HomeAdapter(requireActivity(), productList)
+        adapter = HomeAdapter(requireActivity(),productList)
 
         //recycelrView 초기화
-        binding.rvHomeFragment.layoutManager = LinearLayoutManager(context)
-        binding.rvHomeFragment.adapter = adapter
+        rvHomeFragment.layoutManager = LinearLayoutManager(context)
+        rvHomeFragment.adapter = adapter
 
         //사용자 정보 가져오기
         getProductList()
-
-
-        binding.imbCategoryFragment.setOnClickListener(View.OnClickListener {
-            val intent = Intent(requireActivity(), CategoryActivity::class.java)
-            startActivity(intent)
-        })
     }
 
     private fun getProductList() {
@@ -82,7 +69,7 @@ class HomeFragment : Fragment() {
                     val key = dataSnapshot.key
 
                     //사용자 정보에 키 값 담기
-//                    user?.productKey = key.toString()
+                    user?.productKey = key.toString()
 
                     //리스트에 담기
                     if (user != null) {
@@ -102,4 +89,5 @@ class HomeFragment : Fragment() {
         productList.removeAt(positon)
         adapter.notifyItemRemoved(positon)
     }
+
 }
