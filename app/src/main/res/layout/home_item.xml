@@ -24,7 +24,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/main_image"
+                android:id="@+id/imv_home_main_image"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginLeft="8dp"

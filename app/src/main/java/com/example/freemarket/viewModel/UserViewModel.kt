@@ -2,8 +2,8 @@ package com.example.freemarket.viewModel
 
 
 
+import com.example.freemarket.SplashActivity
 import com.example.freemarket.dto.ProfileDto
-import com.example.freemarket.repository.LoginUserChekingDB
 import com.example.freemarket.repository.UserDB
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -11,7 +11,7 @@ import com.google.firebase.database.ValueEventListener
 
 
 class UserViewModel{
-    fun getUserData() {
+    fun getUserData(splashActivity: SplashActivity, localPhoneData: String) {
         val userDb = UserDB()
         val checking = userDb.checkingUser()
         val dto = ProfileDto()

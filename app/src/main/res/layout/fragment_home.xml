@@ -5,9 +5,51 @@
     android:padding="5dp"
     tools:context=".fragment.HomeFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_home_fragment"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:gravity="right"
+        android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <ImageButton
+                android:id="@+id/imb_category_fragment"
+                android:layout_width="40dp"
+                android:layout_height="45dp"
+                android:src="@drawable/home_category"
+                android:tint="@color/black"
+                tools:ignore="UseAppTint" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:id="@+id/imb_search_fragment"
+                android:layout_width="40dp"
+                android:layout_height="45dp"
+                android:src="@drawable/search"
+                android:tint="@color/black"
+                tools:ignore="UseAppTint" />
+
+            <ImageButton
+                android:id="@+id/imb_noti_fragment"
+                android:layout_width="40dp"
+                android:layout_height="45dp"
+                android:src="@drawable/noti" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_home_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp" />
+    </LinearLayout>
 </FrameLayout>

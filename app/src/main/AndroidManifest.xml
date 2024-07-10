@@ -44,9 +44,7 @@
         <activity
             android:name="com.example.test.OTPActivity"
             android:exported="false" />
-        <activity
-            android:name="com.example.test.MainActivity2"
-            android:exported="false" />
+
         <activity
             android:name="com.example.test.FirebasePhone"
             android:exported="false" />
@@ -61,15 +59,18 @@
         <activity
             android:name=".MainMenuActivity"
             android:exported="false" />
-
-
+        <activity
+            android:name=".PhoneCertificationActivity"
+            android:exported="false" />
         <activity
             android:name="com.example.test.PhoneActivity"
             android:exported="false" />
         <activity
             android:name="com.example.test.Camera"
             android:exported="false" />
-
+        <activity
+            android:name=".testProfile.MainActivity4"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true" />

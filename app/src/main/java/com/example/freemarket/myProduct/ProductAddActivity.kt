@@ -42,7 +42,7 @@ class ProductAddActivity : AppCompatActivity() {
             val productContent = binding.etProductAddContent.text.toString() //나이
 
             //데이터 셋팅
-            val product = ProductDto("", productSubject, productPrice,productLocation,productContent)
+            val product = ProductDto("", productSubject, productPrice,productLocation,productContent,"")
 
             dao.add(product).addOnSuccessListener {
                 for (i in 0 until uriList.count()) {

@@ -2,7 +2,6 @@ package com.example.freemarket
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.PendingIntent
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
@@ -118,17 +117,12 @@ class PhoneCertificationActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 )
                     .show()
-            }else if(!preferences.getString("인증번호", "").equals(etPhoneCertificationNumber.text.toString())) {
-                Toast.makeText(
-                    this@PhoneCertificationActivity,
-                    "인증번호를 확인해주세요",
-                    Toast.LENGTH_SHORT
-                )
-                    .show()
-            } else if(preferences.getString("인증번호", "").equals(etPhoneCertificationNumber.text.toString())) {
+            }else  {
                 mCountDownTimer?.cancel()
 
-                val intent = Intent(this, SignUpActivity::class.java)
+                val intent = Intent(this, SignUpAndUpdateActivity::class.java)
+                intent.putExtra("phone",etPhoneCertificationPhoneNumber.text.toString())
+                intent.putExtra("activity","PhoneCertificationActivity")
                 startActivity(intent)
 
 
