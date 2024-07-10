@@ -51,8 +51,8 @@
             android:id="@+id/tv_profile_name_setting"
             android:layout_width="230dp"
             android:layout_height="40dp"
-            android:text="닉네임"
             android:layout_marginLeft="5dp"
+            android:text="닉네임"
             android:textColor="@color/white"
             android:textSize="25sp"
             app:layout_constraintStart_toEndOf="@+id/my_dang_guen_image_view"
@@ -60,20 +60,21 @@
             tools:ignore="MissingConstraints" />
 
         <Button
-            android:id="@+id/bt_profile_update_setting"
+            android:id="@+id/bt_profile_name_setting"
             android:layout_width="38dp"
             android:layout_height="46dp"
+            android:layout_marginLeft="20dp"
             android:background="#232121"
             android:text=">"
             android:textColor="@color/white"
             android:textSize="30dp"
-            android:layout_marginLeft="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/my_dang_guen_text_view_nick"
             app:layout_constraintTop_toBottomOf="@+id/textView11"
             tools:ignore="MissingConstraints" />
 
     </LinearLayout>
+
 
 
     <Button
@@ -117,4 +118,7 @@
         app:layout_constraintTop_toBottomOf="@+id/my_dang_guen_sell_button"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="16dp" />
+
 </LinearLayout>
+
+

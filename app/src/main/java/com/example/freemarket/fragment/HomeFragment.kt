@@ -1,5 +1,5 @@
 package com.example.freemarket.fragment
-// 홈 수정
+
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.freemarket.R
 import com.example.freemarket.adapter.HomeAdapter
 import com.example.freemarket.dao.ProductDao
+import com.example.freemarket.databinding.FragmentHomeBinding
+import com.example.freemarket.databinding.FragmentSettingBinding
 import com.example.freemarket.dto.ProductDto
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -24,70 +26,85 @@ class HomeFragment : Fragment() {
     lateinit var productList: ArrayList<ProductDto>
 
 
+    private lateinit var binding: FragmentHomeBinding
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
+
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val rvHomeFragment = view.findViewById<RecyclerView>(R.id.rv_home_fragment)
+        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+            super.onViewCreated(view, savedInstanceState)
+
+            val rvHomeFragment = view.findViewById<RecyclerView>(R.id.rv_home_fragment)
 
 
-        //userList 초기화
-        productList = ArrayList()
+            //userList 초기화
+            productList = ArrayList()
 
-        //dao 초기화
-        dao = ProductDao()
+            //dao 초기화
+            dao = ProductDao()
 
-        //adapter 초기화
-        adapter = HomeAdapter(requireActivity(),productList)
+            //adapter 초기화
 
-        //recycelrView 초기화
-        rvHomeFragment.layoutManager = LinearLayoutManager(context)
-        rvHomeFragment.adapter = adapter
+            adapter = HomeAdapter(requireActivity(), productList)
 
-        //사용자 정보 가져오기
-        getProductList()
-    }
+            //recycelrView 초기화
+            binding.rvHomeFragment.layoutManager = LinearLayoutManager(context)
+            binding.rvHomeFragment.adapter = adapter
 
-    private fun getProductList() {
-        dao.getList()?.addValueEventListener(object : ValueEventListener {
-            @SuppressLint("NotifyDataSetChanged")
-            override fun onDataChange(snapshot: DataSnapshot) {
-                //리스트 초기화
-                productList.clear()
+            adapter = HomeAdapter(requireActivity(), productList)
 
-                for (dataSnapshot in snapshot.children) {
+            //recycelrView 초기화
+            rvHomeFragment.layoutManager = LinearLayoutManager(context)
+            rvHomeFragment.adapter = adapter
 
-                    val user = dataSnapshot.getValue(ProductDto::class.java)
 
-                    //키값 가져오기
-                    val key = dataSnapshot.key
+            //사용자 정보 가져오기
+            getProductList()
+        }
 
-                    //사용자 정보에 키 값 담기
-                    user?.productKey = key.toString()
+        private fun getProductList() {
+            dao.getList()?.addValueEventListener(object : ValueEventListener {
+                @SuppressLint("NotifyDataSetChanged")
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    //리스트 초기화
+                    productList.clear()
 
-                    //리스트에 담기
-                    if (user != null) {
-                        productList.add(user)
+                    for (dataSnapshot in snapshot.children) {
+
+                        val user = dataSnapshot.getValue(ProductDto::class.java)
+
+                        //키값 가져오기
+                        val key = dataSnapshot.key
+
+                        //사용자 정보에 키 값 담기
+                        user?.productKey = key.toString()
+
+                        //리스트에 담기
+                        if (user != null) {
+                            productList.add(user)
+                        }
                     }
+
+                    //데이터 적용
+                    adapter.notifyDataSetChanged()
                 }
 
-                //데이터 적용
-                adapter.notifyDataSetChanged()
-            }
+                override fun onCancelled(error: DatabaseError) {}
+            })
+        }
 
-            override fun onCancelled(error: DatabaseError) {}
-        })
+        fun onDeleteClick(v: View?, positon: Int) {
+            productList.removeAt(positon)
+            adapter.notifyItemRemoved(positon)
+        }
     }
 
-    fun onDeleteClick(v: View?, positon: Int) {
-        productList.removeAt(positon)
-        adapter.notifyItemRemoved(positon)
-    }
-
-}

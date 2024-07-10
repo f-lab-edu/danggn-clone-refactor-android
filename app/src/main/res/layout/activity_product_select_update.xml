@@ -43,9 +43,9 @@
                 android:layout_width="20dp"
                 android:layout_height="match_parent"
                 android:src="@drawable/menu"
-                android:tint="@color/white"
                 android:layout_marginRight="3dp"
                 />
+
 
         </LinearLayout>
 

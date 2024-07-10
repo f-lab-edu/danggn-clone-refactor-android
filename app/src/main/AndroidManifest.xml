@@ -29,12 +29,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FreeMarket"
         tools:targetApi="31">
+
         <activity
             android:name=".SplashActivity"
             android:exported="false" />
-        <activity
-            android:name="com.example.test.MainActivity3"
-            android:exported="false" />
+
         <activity
             android:name=".myProduct.ProductSelectUpdateActivity"
             android:exported="false" />
@@ -48,32 +47,36 @@
         <activity
             android:name="com.example.test.FirebasePhone"
             android:exported="false" />
+
+
         <activity
             android:name=".SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashActivity"
-            android:exported="false"
-            tools:ignore="DuplicateActivity" />
-
-        <activity
-            android:name=".MainMenuActivity"
+            android:name="com.example.test.FirebasePratice"
             android:exported="false" />
+
         <activity
             android:name=".PhoneCertificationActivity"
             android:exported="false" />
+
         <activity
             android:name="com.example.test.PhoneActivity"
             android:exported="false" />
         <activity
             android:name="com.example.test.Camera"
             android:exported="false" />
-        <activity
-            android:name=".testProfile.MainActivity4"
-            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true" />
+
+
+        <activity
+            android:name=".MainMenuActivity"
+            android:exported="false" />
+
+
         <activity
             android:name=".MainMenuActivity"
             android:exported="true"
