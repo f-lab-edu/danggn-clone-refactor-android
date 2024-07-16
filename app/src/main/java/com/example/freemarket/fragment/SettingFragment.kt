@@ -1,12 +1,19 @@
 package com.example.freemarket.fragment
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.freemarket.R
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.example.freemarket.SignUpAndUpdateActivity
 import com.example.freemarket.databinding.FragmentSettingBinding
+import com.example.freemarket.myProduct.ProductSelectUpdateActivity
+import com.example.freemarket.repository.LocalDB
+import com.google.firebase.database.core.Context
 
 class SettingFragment : Fragment() {
     private lateinit var binding: FragmentSettingBinding
@@ -23,20 +30,22 @@ class SettingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.btProfileNameSetting
-        binding.tvProfileNameSetting
+        binding.btProfileImageNameUpdateSetting.setOnClickListener(View.OnClickListener {
+            val intent = Intent(requireActivity(), SignUpAndUpdateActivity::class.java)
+            startActivity(intent)
+        })
     }
 
+    override fun onStart() {
+        super.onStart()
+        val LocalDB = LocalDB()
+        val getLocalData = LocalDB.getLocalData(requireActivity())!!
+        val userImage = getLocalData.getString("profile_image", "")
+        val userName = getLocalData.getString("name", "")
+        Glide.with(requireActivity()).load(userImage)
+            .apply(RequestOptions().circleCrop())
+            .into(binding.imvProfileImageSetting)
 
-    class SettingFragment : Fragment() {
-        override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
-        ): View? {
-            // Inflate the layout for this fragment
-            return inflater.inflate(R.layout.fragment_setting, container, false)
-        }
-
+        binding.tvProfileNameSetting.setText(userName)
     }
 }

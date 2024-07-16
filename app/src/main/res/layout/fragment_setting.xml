@@ -42,7 +42,7 @@
             android:layout_width="64dp"
             android:layout_height="67dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_launcher_foreground"
+            android:src="@drawable/profile_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView11"
             tools:ignore="MissingConstraints" />
@@ -51,7 +51,7 @@
             android:id="@+id/tv_profile_name_setting"
             android:layout_width="230dp"
             android:layout_height="40dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="15dp"
             android:text="닉네임"
             android:textColor="@color/white"
             android:textSize="25sp"
@@ -60,7 +60,7 @@
             tools:ignore="MissingConstraints" />
 
         <Button
-            android:id="@+id/bt_profile_name_setting"
+            android:id="@+id/bt_profile_image_name_update_setting"
             android:layout_width="38dp"
             android:layout_height="46dp"
             android:layout_marginLeft="20dp"

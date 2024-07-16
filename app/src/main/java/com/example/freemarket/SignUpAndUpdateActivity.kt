@@ -53,7 +53,9 @@ class SignUpAndUpdateActivity : AppCompatActivity() {
             binding.btSignUpActivityFinish.visibility = View.INVISIBLE
         }
 
-        Glide.with(this).load(existingImage).into(binding.imvSignUpActivityProfileImage)
+        Glide.with(this).load(existingImage)
+            .apply(RequestOptions().circleCrop())
+            .into(binding.imvSignUpActivityProfileImage)
         binding.etSignUpActivityProfileNick.setText(existingName)
 
 

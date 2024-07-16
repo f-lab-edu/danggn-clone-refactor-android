@@ -1,32 +1,17 @@
 package com.example.freemarket
 
 
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.View
 import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageButton
-import android.widget.ImageView
 import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 
-import com.bumptech.glide.request.RequestOptions
-import com.example.freemarket.databinding.ActivityProductAddBinding
 import com.example.freemarket.databinding.ActivitySignUpBinding
-import com.example.freemarket.dto.ProfileDto
-import com.example.freemarket.fragment.HomeFragment
 import com.example.freemarket.repository.SignUserDB
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 
 
 class SignUpActivity : AppCompatActivity() {
@@ -61,7 +46,7 @@ class SignUpActivity : AppCompatActivity() {
 
         //이미지 선택 - 갤러리 , 촬영 , 기본이미지
         val pickImage = registerForActivityResult(ActivityResultContracts.GetContent()) {
-            binding.ivSignUpActivityProfileImage.setImageURI(it)
+            binding.imvSignUpActivityProfileImage.setImageURI(it)
             if (it != null) {
                 uri = it
             }
@@ -123,8 +108,8 @@ class SignUpActivity : AppCompatActivity() {
                 //it - it receiver 객체를 받을수 있게 하는 변수 밑에서 it1은 uri변수를 말함
                 //-> - 함수를 뜻하는 의미
 
-                uri?.let { it1 -> SignUser.signingUser(this, name, phone!!, it1) }
-                binding.laoding.visibility = View.VISIBLE
+//                uri?.let { it1 -> SignUser.signingUser(this, name, phone!!, it1) }
+//                binding.laoding.visibility = View.VISIBLE
 
                 val pickImage = registerForActivityResult(ActivityResultContracts.GetContent()) {
                     if (it != null) {
