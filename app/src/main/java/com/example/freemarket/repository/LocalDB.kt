@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.SharedPreferences
 
 class LocalDB {
+
     fun saveLocalData(activity: Activity,key:String, phone: String, name: String, profileImage: String) {
         // SharedPreferences 객체 생성
         val pref = activity.getSharedPreferences("user", 0) // "pref"라는 이름의 SharedPreferences 파일 열기
@@ -16,6 +17,7 @@ class LocalDB {
         edit.putString("profile_image", profileImage)
         edit.apply() // 변경사항 저장 완료
     }
+
 
     // 데이터 불러오기 메서드
     fun loadLocalData(activity:Activity): String? {
@@ -37,7 +39,6 @@ class LocalDB {
 
         return pref
     }
-
 
     fun updateLocalData(activity: Activity, name: String?, profileImage: String?) {
         // SharedPreferences 객체 생성

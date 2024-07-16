@@ -92,8 +92,8 @@ class SignUpAndUpdateActivity : AppCompatActivity() {
                 //let - 만약에 not null 일 경우 사용하는 함수
                 //it - it receiver 객체를 받을수 있게 하는 변수 밑에서 it1은 uri변수를 말함
                 //-> - 함수를 뜻하는 의미
-                uri?.let { it1 -> SignUser.signingUser(this, name, phone!!, it1) }
-                binding.laoding.visibility = View.VISIBLE
+//                uri?.let { it1 -> SignUser.signingUser(this, name, phone!!, it1) }
+//                binding.laoding.visibility = View.VISIBLE
             }
         })
 

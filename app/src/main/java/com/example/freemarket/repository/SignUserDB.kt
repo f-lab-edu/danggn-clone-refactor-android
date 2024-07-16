@@ -11,7 +11,6 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
 class SignUserDB {
-
     fun signingUser(activity: SignUpAndUpdateActivity, name: String, phone: String, uri: Uri) {
         val firebaseRef: DatabaseReference
         val storageRef: StorageReference
@@ -34,7 +33,7 @@ class SignUserDB {
                             contacts = ProfileDto(name, imgUrl, phone)
                             firebaseRef.child(contactId).setValue(contacts)
                                 .addOnCompleteListener {
-                                    localDB.saveLocalData(activity, phone, name, "", "")
+//                                    localDB.saveLocalData(activity, phone, name, "", "")
                                     val intent = Intent(activity, MainMenuActivity::class.java)
                                     activity.startActivity(intent)
                                     activity.finish()
@@ -47,7 +46,6 @@ class SignUserDB {
                                                 Intent(activity, MainMenuActivity::class.java)
                                             activity.startActivity(intent)
                                             activity.finish()
-
                                         }
                                         .addOnFailureListener { error ->
                                         }
@@ -55,7 +53,6 @@ class SignUserDB {
                         }
                 }
         }
-
     }
 }
 
