@@ -40,9 +40,7 @@
         <activity
             android:name=".myProduct.ProductAddActivity"
             android:exported="false" />
-        <activity
-            android:name="com.example.test.OTPActivity"
-            android:exported="false" />
+
 
         <activity
             android:name="com.example.test.FirebasePhone"
@@ -61,20 +59,15 @@
             android:exported="false" />
 
         <activity
-            android:name="com.example.test.PhoneActivity"
-            android:exported="false" />
-        <activity
             android:name="com.example.test.Camera"
             android:exported="false" />
 
         <activity
             android:name=".MainActivity"
             android:exported="true" />
-
-
         <activity
-            android:name=".MainMenuActivity"
-            android:exported="false" />
+            android:name=".SignUpAndUpdateActivity"
+            android:exported="true" />
 
 
         <activity
