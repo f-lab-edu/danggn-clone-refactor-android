@@ -7,6 +7,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.net.Uri
 import android.widget.Toast
+import com.example.freemarket.ProgressDialog
 import com.example.freemarket.dao.ProductDao
 import com.example.freemarket.dto.ProductDto
 import com.example.freemarket.myProduct.ProductAddActivity
@@ -47,11 +48,13 @@ class ProductAddDB {
                                     productLocation,
                                     productContent,
                                     imgUrl,
-                                    productCategory
+                                    productCategory,
+                                    ""
                                 )
                             dao.add(product).addOnSuccessListener {
                                 Toast.makeText(context, "등록 성공", Toast.LENGTH_SHORT).show()
                                 activity.finish()
+
                             }.addOnFailureListener {
                                 Toast.makeText(context, "등록 실패: ${it.message}", Toast.LENGTH_SHORT)
                                     .show()

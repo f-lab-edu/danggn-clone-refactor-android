@@ -32,15 +32,9 @@
                 tools:ignore="UseAppTint" />
 
             <TextView
-                android:id="@+id/product_make_back_button"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:gravity="center"
-                android:text=""
-                android:textColor="@color/white"
-                android:textSize="20dp" />
+                android:layout_weight="1" />
 
 
             <Button
@@ -80,13 +74,14 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/imageArea"
+                        android:id="@+id/imv_product_add_gallery"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:src="@drawable/chatting" />
+                        android:src="@drawable/camera"
+                        android:background="@color/white"/>
 
                     <TextView
-                        android:id="@+id/countArea"
+                        android:id="@+id/tv_product_add_gallery_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0/0"
@@ -95,7 +90,7 @@
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerview"
+                    android:id="@+id/rv_product_add_gallery"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp" />
@@ -171,6 +166,7 @@
 
         </LinearLayout>
 
+
         <EditText
             android:id="@+id/et_product_add_location"
             android:layout_width="match_parent"
@@ -187,6 +183,7 @@
             tools:ignore="MissingConstraints" />
 
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -195,7 +192,7 @@
             <EditText
                 android:id="@+id/et_product_add_content"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="180dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/white_line"
                 android:hint="게시글 내용을 적어주세요(가품 및 판매금직품목은 게시가 제한될 수 있어요)"
@@ -208,8 +205,3 @@
 
 
 </ScrollView>
-
-
-
-
-
