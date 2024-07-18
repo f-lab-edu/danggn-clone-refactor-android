@@ -1,6 +1,7 @@
 package com.example.freemarket.adapter
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.freemarket.R
 import com.example.freemarket.dao.ProductDao
 import com.example.freemarket.dto.ProductDto
@@ -34,13 +36,13 @@ class HomeAdapter(private val context: Context, private val productList:ArrayLis
         val product: ProductDto = productList[position]
 
         holder.homeSubject.text = product.productSubject
-        holder.homePrice.text = product.productPrice
+        holder.homePrice.text = product.productPrice+"원"
+        Glide.with(context).load(product.productImage).into(holder.homeMianImage)
+
 
         holder.itemView.setOnClickListener {
-
             //사용자 수정화면으로 이동
             val intent = Intent(context, ProductSelectUpdateActivity::class.java)
-            intent.putExtra("key", product.productKey)
             intent.putExtra("productSubject", product.productSubject)
             intent.putExtra("productPrice", product.productPrice)
             intent.putExtra("productLocation", product.productLocation)
@@ -63,11 +65,13 @@ class HomeAdapter(private val context: Context, private val productList:ArrayLis
         val homeSubject: TextView = itemView.findViewById(R.id.tv_home_subject)
         val homePrice: TextView = itemView.findViewById(R.id.tv_home_price)
         val homeUpdateDeleteDialog: ImageView = itemView.findViewById(R.id.iv_home_product_item_dialog)
+        val homeMianImage: ImageView = itemView.findViewById(R.id.imv_home_main_image)
+
     }
 
 
     fun showDialog(position: Int) {
-        val dialog = android.app.Dialog(context)
+        val dialog = Dialog(context)
         dialog.setContentView(R.layout.dialog_product_update_delete_conform)
         dialog.setCanceledOnTouchOutside(true)
         dialog.setCancelable(true)
@@ -79,13 +83,13 @@ class HomeAdapter(private val context: Context, private val productList:ArrayLis
             dialog.dismiss()
         }
 
-        val btDelete = dialog.findViewById<Button>(R.id.bt_home_product_delete)
-        btDelete.setOnClickListener() {
-            dialog.dismiss()
-            val key = productList[position].productKey
-            lateinit var dao: ProductDao
-            dao.delete(key)
-        }
+//        val btDelete = dialog.findViewById<Button>(R.id.bt_home_product_delete)
+//        btDelete.setOnClickListener() {
+//            dialog.dismiss()
+//            val key = productList[position].productKey
+//            lateinit var dao: ProductDao
+//            dao.delete(key)
+//        }
 
         val btCancel = dialog.findViewById<Button>(R.id.bt_home_product_cancel)
         btCancel.setOnClickListener() {

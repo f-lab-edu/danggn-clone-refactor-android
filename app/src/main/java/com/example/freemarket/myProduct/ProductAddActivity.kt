@@ -10,13 +10,11 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.freemarket.dao.ProductDao
+import com.example.freemarket.CategoryActivity
+import com.example.freemarket.ProgressDialog
 import com.example.freemarket.databinding.ActivityProductAddBinding
-import com.example.freemarket.dto.ProductDto
-import com.google.firebase.Firebase
-import com.google.firebase.storage.storage
-import java.text.SimpleDateFormat
-import java.util.Date
+import com.example.freemarket.repository.LocalDB
+import com.example.freemarket.repository.ProductAddDB
 
 class ProductAddActivity : AppCompatActivity() {
     private var uriList = ArrayList<Uri>()
@@ -25,54 +23,50 @@ class ProductAddActivity : AppCompatActivity() {
     private val binding: ActivityProductAddBinding by lazy {
         ActivityProductAddBinding.inflate(layoutInflater)
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        //카테고리 선택
+        val local = LocalDB()
+        val preference = local.getLocalData(this)!!
+        val productCategory = preference.getString("category","")!!
 
-        //데이터베이스 클래스 객체 생성
-        val dao = ProductDao()
+        //카테고리 선택하기
+        binding.btProductAddCategory.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this, CategoryActivity::class.java)
+            startActivity(intent)
+        })
+
 
         //사용자 등록 버튼 이벤트
         binding.btProductAddComplete.setOnClickListener {
-
+            val productAddDB = ProductAddDB()
             val productSubject = binding.etProductAddSubject.text.toString() //이름
-            val productPrice = binding.etProductAddPrice.text.toString() //나이
-            val productLocation = binding.etProductAddLocation.text.toString() //나이
-            val productContent = binding.etProductAddContent.text.toString() //나이
+            val productPrice = binding.etProductAddPrice.text.toString() //가격
+            val productLocation = binding.etProductAddLocation.text.toString() //위치
+            val productContent = binding.etProductAddContent.text.toString() //내용
 
-            //데이터 셋팅
-            val product = ProductDto("", productSubject, productPrice,productLocation,productContent,"")
+            //uriList.get(0)상품 대표 이미지
+            productAddDB.productAdding(applicationContext,this,productSubject,productPrice,productLocation,productContent,uriList,productCategory)
 
-            dao.add(product).addOnSuccessListener {
-                for (i in 0 until uriList.count()) {
-                    imageUpload(uriList.get(i), i)
-                    try {
-                        Thread.sleep(500)
-                    } catch (e: InterruptedException) {
-                        e.printStackTrace()
-                    }
-                }
-                Toast.makeText(this, "등록 성공", Toast.LENGTH_SHORT).show()
-
-            }.addOnFailureListener {
-                Toast.makeText(this, "등록 실패: ${it.message}", Toast.LENGTH_SHORT).show()
-            }
+            val progressbar = ProgressDialog()
+            progressbar.showDialog(this)
         }
 
 
         // RecyclerView에 Adapter 연결하기
         adapter = ImageAdapter(this, uriList)
-        binding.recyclerview.adapter = adapter
+        binding.rvProductAddGallery.adapter = adapter
         // LinearLayoutManager을 사용하여 수평으로 아이템을 배치한다.
-        binding.recyclerview.layoutManager =
+        binding.rvProductAddGallery.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
 
         // ImageView를 클릭할 경우
         // 선택 가능한 이미지의 최대 개수를 초과하지 않았을 경우에만 앨범을 호출한다.
-
-        binding.imageArea.setOnClickListener(View.OnClickListener {
+        binding.imvProductAddGallery.setOnClickListener(View.OnClickListener {
             if (uriList.count() == maxNumber) {
                 Toast.makeText(
                     this,
@@ -88,15 +82,15 @@ class ProductAddActivity : AppCompatActivity() {
 
         // 업로드 하기 버튼을 클릭할 경우
         // for문을 통해 uriList.count()만큼 imageUpload 함수를 호출한다.
-
-
         adapter.setItemClickListener(object : ImageAdapter.onItemClickListener {
+            @SuppressLint("NotifyDataSetChanged")
             override fun onItemClick(position: Int) {
                 uriList.removeAt(position)
                 adapter.notifyDataSetChanged()
                 printCount()
             }
         })
+
     }
 
 
@@ -136,29 +130,16 @@ class ProductAddActivity : AppCompatActivity() {
 
     private fun printCount() {
         val text = "${uriList.count()}/${maxNumber}"
-        binding.countArea.text = text
+        binding.tvProductAddGalleryCount.text = text
     }
+
+
+
+
+
 
 
     // 파일 업로드
     // 파일을 가리키는 참조를 생성한 후 putFile에 이미지 파일 uri를 넣어 파일을 업로드한다.
-    private fun imageUpload(uri: Uri, count: Int) {
-        // storage 인스턴스 생성
-        val storage = Firebase.storage
-        // storage 참조
-        val storageRef = storage.getReference("product_image")
-        // storage에 저장할 파일명 선언
-        val fileName = SimpleDateFormat("yyyyMMddHHmmss_${count}").format(Date())
 
-        val mountainsRef = storageRef.child("${fileName}.png")
-        val uploadTask = mountainsRef.putFile(uri)
-
-        uploadTask.addOnSuccessListener { taskSnapshot ->
-            // 파일 업로드 성공
-            Toast.makeText(this, "사진 업로드 성공", Toast.LENGTH_SHORT).show();
-        }.addOnFailureListener {
-            // 파일 업로드 실패
-            Toast.makeText(this, "사진 업로드 실패", Toast.LENGTH_SHORT).show();
-        }
-    }
 }
