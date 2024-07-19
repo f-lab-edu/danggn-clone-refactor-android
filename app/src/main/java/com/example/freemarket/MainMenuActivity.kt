@@ -15,10 +15,6 @@ import com.example.freemarket.fragment.SettingFragment
 import com.example.freemarket.myProduct.ProductAddActivity
 
 
-/**
- * 1.setBottomNavigationView() 메소드 1줄씩 무엇인지 주석 적기
- * */
-
 class MainMenuActivity : AppCompatActivity() {
     private val binding: ActivityMainMenuBinding by lazy {
         ActivityMainMenuBinding.inflate(layoutInflater)

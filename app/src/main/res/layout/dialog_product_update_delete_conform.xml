@@ -7,6 +7,7 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+
     <Button
         android:id="@+id/bt_home_product_update"
         android:layout_width="match_parent"
@@ -15,8 +16,8 @@
         android:onClick="clickDialogBtn"
         android:text="게시글 수정"
         android:textColor="#3296FF"
+        android:background="@color/white"
         android:textSize="18dp" />
-
 
     <Button
         android:id="@+id/bt_home_product_delete"
@@ -25,6 +26,7 @@
         android:layout_marginTop="7dp"
         android:onClick="clickDialogBtn"
         android:text="삭 제"
+        android:background="@color/white"
         android:textColor="#FF4646"
         android:textSize="18dp" />
 
@@ -34,8 +36,9 @@
         android:layout_height="50dp"
         android:layout_marginTop="15dp"
         android:onClick="clickDialogBtn"
+        android:background="@color/white"
         android:text="취 소"
-        android:textColor="#3296FF"
+        android:textColor="@color/black"
         android:textSize="18dp" />
 
 </LinearLayout>

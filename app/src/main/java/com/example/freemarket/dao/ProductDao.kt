@@ -15,11 +15,6 @@ class ProductDao {
         databaseReference = db.getReference("product")
     }
 
-    //등록
-    fun add(user: ProductDto?): Task<Void>{
-        return databaseReference!!.push().setValue(user)
-    }
-
     //조회
     fun getList(): Query?{
         return databaseReference

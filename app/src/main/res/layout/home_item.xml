@@ -55,21 +55,6 @@
                     android:textStyle="bold"
                     tools:ignore="MissingConstraints" />
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    />
-
-                <ImageView
-                    android:id="@+id/iv_home_product_item_dialog"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginTop="3dp"
-                    android:src="@drawable/menu"
-                    android:tint="@color/white"
-                    tools:ignore="MissingConstraints,UseAppTint" />
-
 
             </LinearLayout>
 

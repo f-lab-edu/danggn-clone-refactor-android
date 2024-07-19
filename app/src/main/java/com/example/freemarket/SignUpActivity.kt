@@ -27,15 +27,8 @@ class SignUpActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
         setContentView(binding.root)
         binding.laoding.visibility = View.INVISIBLE
-//이미지 선택 - 갤러리 , 촬영 , 기본이미지
-
-
-        setContentView(R.layout.activity_sign_up)
-
         //이미지 선택 - 갤러리 , 촬영 , 기본이미지
 
         val selectImage =
