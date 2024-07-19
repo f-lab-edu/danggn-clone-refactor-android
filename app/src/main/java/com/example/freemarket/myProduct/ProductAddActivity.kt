@@ -15,6 +15,9 @@ import com.example.freemarket.ProgressDialog
 import com.example.freemarket.databinding.ActivityProductAddBinding
 import com.example.freemarket.repository.LocalDB
 import com.example.freemarket.repository.ProductAddDB
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.StorageReference
 
 class ProductAddActivity : AppCompatActivity() {
     private var uriList = ArrayList<Uri>()
@@ -31,14 +34,15 @@ class ProductAddActivity : AppCompatActivity() {
         //카테고리 선택
         val local = LocalDB()
         val preference = local.getLocalData(this)!!
-        val productCategory = preference.getString("category","")!!
+        val productCategory = preference.getString("category", "")!!
+
+
 
         //카테고리 선택하기
         binding.btProductAddCategory.setOnClickListener(View.OnClickListener {
             val intent = Intent(this, CategoryActivity::class.java)
             startActivity(intent)
         })
-
 
         //사용자 등록 버튼 이벤트
         binding.btProductAddComplete.setOnClickListener {
@@ -49,8 +53,16 @@ class ProductAddActivity : AppCompatActivity() {
             val productContent = binding.etProductAddContent.text.toString() //내용
 
             //uriList.get(0)상품 대표 이미지
-            productAddDB.productAdding(applicationContext,this,productSubject,productPrice,productLocation,productContent,uriList,productCategory)
-
+            productAddDB.productAdding(
+                applicationContext,
+                this,
+                productSubject,
+                productPrice,
+                productLocation,
+                productContent,
+                uriList,
+                productCategory
+            )
             val progressbar = ProgressDialog()
             progressbar.showDialog(this)
         }
@@ -62,7 +74,6 @@ class ProductAddActivity : AppCompatActivity() {
         // LinearLayoutManager을 사용하여 수평으로 아이템을 배치한다.
         binding.rvProductAddGallery.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-
 
         // ImageView를 클릭할 경우
         // 선택 가능한 이미지의 최대 개수를 초과하지 않았을 경우에만 앨범을 호출한다.
@@ -90,9 +101,7 @@ class ProductAddActivity : AppCompatActivity() {
                 printCount()
             }
         })
-
     }
-
 
     @SuppressLint("NotifyDataSetChanged")
     private val registerForActivityResult =
@@ -132,14 +141,4 @@ class ProductAddActivity : AppCompatActivity() {
         val text = "${uriList.count()}/${maxNumber}"
         binding.tvProductAddGalleryCount.text = text
     }
-
-
-
-
-
-
-
-    // 파일 업로드
-    // 파일을 가리키는 참조를 생성한 후 putFile에 이미지 파일 uri를 넣어 파일을 업로드한다.
-
 }

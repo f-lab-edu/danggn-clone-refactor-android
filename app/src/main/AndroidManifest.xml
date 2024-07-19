@@ -62,6 +62,10 @@
         <activity
             android:name=".SignUpAndUpdateActivity"
             android:exported="true" />
+
+        <activity
+            android:name=".CategoryActivity"
+            android:exported="true" />
         <activity
             android:name=".MainMenuActivity"
             android:exported="true"

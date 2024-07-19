@@ -20,6 +20,16 @@ import com.example.freemarket.dto.ProductDto
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import okhttp3.internal.notify
+
+/**
+ * 상품 삭제하기
+ * 1.리사이클러뷰 실시간으로 삭제하기
+ *  -아이템을 실시간으로 삭제부터 하고 파이어베이스 삭제하기 만들어보자
+ * 2.파이어베이스에서 삭제하는 방법 공부하기
+ *
+ * */
+
 
 class HomeFragment : Fragment() {
     lateinit var dao: ProductDao
@@ -52,6 +62,7 @@ class HomeFragment : Fragment() {
 
         //adapter 초기화
         adapter = HomeAdapter(requireActivity(), productList)
+
 
         //recycelrView 초기화
         binding.rvHomeFragment.layoutManager = LinearLayoutManager(context)
@@ -98,8 +109,11 @@ class HomeFragment : Fragment() {
         })
     }
 
-    fun onDeleteClick(v: View?, positon: Int) {
-        productList.removeAt(positon)
-        adapter.notifyItemRemoved(positon)
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onStart() {
+        super.onStart()
+
+        adapter.notifyDataSetChanged()
     }
 }
+

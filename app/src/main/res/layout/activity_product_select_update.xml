@@ -39,12 +39,12 @@
 
 
             <ImageView
-                android:id="@+id/iv_home_product_item_dialog"
+                android:id="@+id/imv_home_product_item_dialog"
                 android:layout_width="20dp"
                 android:layout_height="match_parent"
                 android:src="@drawable/menu"
                 android:layout_marginRight="3dp"
-                />
+                app:tint="@color/white" />
 
 
         </LinearLayout>

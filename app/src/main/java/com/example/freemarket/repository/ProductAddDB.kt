@@ -7,11 +7,11 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.net.Uri
 import android.widget.Toast
-import com.example.freemarket.ProgressDialog
-import com.example.freemarket.dao.ProductDao
 import com.example.freemarket.dto.ProductDto
 import com.example.freemarket.myProduct.ProductAddActivity
 import com.google.firebase.Firebase
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.storage
@@ -29,10 +29,14 @@ class ProductAddDB {
         productLocation: String,
         productContent: String,
         productImage: ArrayList<Uri>,
-        productCategory: String,
+        productCategory: String
     ) {
         val storageRef: StorageReference
         storageRef = FirebaseStorage.getInstance().getReference("product_image")
+        val databaseReference: DatabaseReference
+        val db = FirebaseDatabase.getInstance()
+        databaseReference = db.getReference("product")
+        val contactId = databaseReference.push().key!!
 
         productImage.let { it ->
             storageRef.putFile(it.get(0))
@@ -40,7 +44,6 @@ class ProductAddDB {
                     task.metadata!!.reference!!.downloadUrl
                         .addOnSuccessListener { url ->
                             val imgUrl = url.toString()
-                            val dao = ProductDao()
                             val product =
                                 ProductDto(
                                     productSubject,
@@ -49,21 +52,26 @@ class ProductAddDB {
                                     productContent,
                                     imgUrl,
                                     productCategory,
-                                    ""
+                                    contactId
                                 )
-                            dao.add(product).addOnSuccessListener {
-                                Toast.makeText(context, "등록 성공", Toast.LENGTH_SHORT).show()
-                                activity.finish()
 
-                            }.addOnFailureListener {
-                                Toast.makeText(context, "등록 실패: ${it.message}", Toast.LENGTH_SHORT)
-                                    .show()
-                            }
+                            databaseReference.child(contactId).setValue(product)
+                                .addOnCompleteListener {
+                                    Toast.makeText(context, "등록 성공", Toast.LENGTH_SHORT).show()
+                                    activity.finish()
+                                }
+                                .addOnFailureListener { error ->
+                                    Toast.makeText(
+                                        context,
+                                        "등록 실패", Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+
 
                         }
                 }
             for (i in 0 until it.count()) {
-                imageUpload(it.get(i), i)
+                imageUpload(it.get(i), i,contactId)
                 try {
                     Thread.sleep(500)
                 } catch (e: InterruptedException) {
@@ -74,15 +82,15 @@ class ProductAddDB {
     }
 
 
-    private fun imageUpload(uri: Uri, count: Int) {
+    private fun imageUpload(uri: Uri, count: Int, contactId: String) {
         // storage 인스턴스 생성
         val storage = Firebase.storage
         // storage 참조
-        val storageRef = storage.getReference("product_image")
+        val storageRef = storage.getReference("product_image/")
         // storage에 저장할 파일명 선언
         val fileName = SimpleDateFormat("yyyyMMddHHmmss_${count}").format(Date())
-
-        val mountainsRef = storageRef.child("${fileName}.png")
+//            .child("${fileName}.png")
+        val mountainsRef = storageRef.child(contactId).child("${fileName}.png")
         val uploadTask = mountainsRef.putFile(uri)
 
         uploadTask.addOnSuccessListener { taskSnapshot ->

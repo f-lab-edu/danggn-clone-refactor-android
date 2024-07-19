@@ -11,12 +11,10 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
 class SignUserDB {
-
-    fun signingUser(activity: SignUpAndUpdateActivity, name: String, phone: String, uri: Uri) {
+    fun signingUser(context: SignUpAndUpdateActivity, name: String, phone: String, uri: Uri) {
         val firebaseRef: DatabaseReference
         val storageRef: StorageReference
         val localDB = LocalDB()
-
 
         firebaseRef = FirebaseDatabase.getInstance().getReference("user")
         storageRef = FirebaseStorage.getInstance().getReference("profileImage")
@@ -30,32 +28,19 @@ class SignUserDB {
                     task.metadata!!.reference!!.downloadUrl
                         .addOnSuccessListener { url ->
                             val imgUrl = url.toString()
-
-                            contacts = ProfileDto(name, imgUrl, phone)
+                            contacts = ProfileDto(name, imgUrl,phone)
                             firebaseRef.child(contactId).setValue(contacts)
                                 .addOnCompleteListener {
-                                    localDB.saveLocalData(activity, phone, name, "", "")
-                                    val intent = Intent(activity, MainMenuActivity::class.java)
-                                    activity.startActivity(intent)
-                                    activity.finish()
+                                    localDB.saveLocalData(context,contactId,phone,name,imgUrl)
+                                    val intent = Intent(context, MainMenuActivity::class.java)
+                                    context.startActivity(intent)
+                                    context.finish()
 
-
-                                    contacts = ProfileDto(name, imgUrl)
-                                    firebaseRef.child(contactId).setValue(contacts)
-                                        .addOnCompleteListener {
-                                            val intent =
-                                                Intent(activity, MainMenuActivity::class.java)
-                                            activity.startActivity(intent)
-                                            activity.finish()
-
-                                        }
-                                        .addOnFailureListener { error ->
-                                        }
+                                }
+                                .addOnFailureListener { error ->
                                 }
                         }
                 }
         }
-
     }
 }
-

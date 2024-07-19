@@ -47,13 +47,11 @@ class HomeAdapter(private val context: Context, private val productList:ArrayLis
             intent.putExtra("productPrice", product.productPrice)
             intent.putExtra("productLocation", product.productLocation)
             intent.putExtra("productContent", product.productContent)
+            intent.putExtra("productKey", product.productKey)
             context.startActivity(intent)
-            (context as Activity).finish()
         }
 
-        holder.homeUpdateDeleteDialog.setOnClickListener {
-            showDialog(position)
-        }
+
     }
 
     //값 갯수 리턴
@@ -64,36 +62,7 @@ class HomeAdapter(private val context: Context, private val productList:ArrayLis
     class HomeViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val homeSubject: TextView = itemView.findViewById(R.id.tv_home_subject)
         val homePrice: TextView = itemView.findViewById(R.id.tv_home_price)
-        val homeUpdateDeleteDialog: ImageView = itemView.findViewById(R.id.iv_home_product_item_dialog)
         val homeMianImage: ImageView = itemView.findViewById(R.id.imv_home_main_image)
 
-    }
-
-
-    fun showDialog(position: Int) {
-        val dialog = Dialog(context)
-        dialog.setContentView(R.layout.dialog_product_update_delete_conform)
-        dialog.setCanceledOnTouchOutside(true)
-        dialog.setCancelable(true)
-        dialog.show()
-
-        //다이얼로그 취소하기
-        val btUpdate = dialog.findViewById<Button>(R.id.bt_home_product_update)
-        btUpdate.setOnClickListener() {
-            dialog.dismiss()
-        }
-
-//        val btDelete = dialog.findViewById<Button>(R.id.bt_home_product_delete)
-//        btDelete.setOnClickListener() {
-//            dialog.dismiss()
-//            val key = productList[position].productKey
-//            lateinit var dao: ProductDao
-//            dao.delete(key)
-//        }
-
-        val btCancel = dialog.findViewById<Button>(R.id.bt_home_product_cancel)
-        btCancel.setOnClickListener() {
-            dialog.dismiss()
-        }
     }
 }

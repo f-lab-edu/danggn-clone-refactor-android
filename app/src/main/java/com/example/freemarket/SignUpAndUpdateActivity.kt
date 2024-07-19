@@ -45,8 +45,6 @@ class SignUpAndUpdateActivity : AppCompatActivity() {
         val existingName = getLocalData.getString("name", "")
 
         val activity = intent.getStringExtra("activity")
-
-
         if (activity == "PhoneCertificationActivity") {
             binding.btUpdateActivity.visibility = View.INVISIBLE
         } else {
