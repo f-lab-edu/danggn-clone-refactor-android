@@ -1,21 +1,21 @@
 package com.example.freemarket.adapter
 
-import android.app.Activity
-import android.app.Dialog
+
 import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.freemarket.R
-import com.example.freemarket.dao.ProductDao
 import com.example.freemarket.dto.ProductDto
 import com.example.freemarket.myProduct.ProductSelectUpdateActivity
+
 
 class HomeAdapter(private val context: Context, private val productList:ArrayList<ProductDto>):
     RecyclerView.Adapter<HomeAdapter.HomeViewHolder>(){
@@ -34,10 +34,9 @@ class HomeAdapter(private val context: Context, private val productList:ArrayLis
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
 
         val product: ProductDto = productList[position]
-
         holder.homeSubject.text = product.productSubject
-        holder.homePrice.text = product.productPrice+"원"
         Glide.with(context).load(product.productImage).into(holder.homeMianImage)
+        holder.homePrice.text = context.getResources().getString(R.string.home_fragment_item_price).format(product.productPrice.toInt())
 
 
         holder.itemView.setOnClickListener {
@@ -50,8 +49,6 @@ class HomeAdapter(private val context: Context, private val productList:ArrayLis
             intent.putExtra("productKey", product.productKey)
             context.startActivity(intent)
         }
-
-
     }
 
     //값 갯수 리턴
@@ -62,6 +59,7 @@ class HomeAdapter(private val context: Context, private val productList:ArrayLis
     class HomeViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val homeSubject: TextView = itemView.findViewById(R.id.tv_home_subject)
         val homePrice: TextView = itemView.findViewById(R.id.tv_home_price)
+
         val homeMianImage: ImageView = itemView.findViewById(R.id.imv_home_main_image)
 
     }
