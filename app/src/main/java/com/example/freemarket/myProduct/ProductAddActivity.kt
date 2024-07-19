@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.freemarket.CategoryActivity
 import com.example.freemarket.ProgressDialog
+import com.example.freemarket.R
 import com.example.freemarket.databinding.ActivityProductAddBinding
 import com.example.freemarket.repository.LocalDB
 import com.example.freemarket.repository.ProductAddDB
@@ -138,7 +139,6 @@ class ProductAddActivity : AppCompatActivity() {
         }
 
     private fun printCount() {
-        val text = "${uriList.count()}/${maxNumber}"
-        binding.tvProductAddGalleryCount.text = text
+        binding.tvProductAddGalleryCount.text =  String.format(resources.getString(R.string.image_count),uriList.count(),maxNumber)
     }
 }
