@@ -3,17 +3,13 @@ package com.example.freemarket
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.freemarket.databinding.ActivityMainMenuBinding
 import com.example.freemarket.fragment.ChattingFragment
 import com.example.freemarket.fragment.DongNaeFragment
 import com.example.freemarket.fragment.HomeFragment
 import com.example.freemarket.fragment.SettingFragment
 import com.example.freemarket.myProduct.ProductAddActivity
-
 
 class MainMenuActivity : AppCompatActivity() {
     private val binding: ActivityMainMenuBinding by lazy {
@@ -31,40 +27,50 @@ class MainMenuActivity : AppCompatActivity() {
             binding.bottomNavigationView.selectedItemId = R.id.nv_home
         }
 
-
-        binding.btMainMenuPlus.setOnClickListener(View.OnClickListener {
-            val intent = Intent(
-                this,
-                ProductAddActivity::class.java
-            )
-            startActivity(intent)
-        })
+        binding.btMainMenuPlus.setOnClickListener(
+            View.OnClickListener {
+                val intent =
+                    Intent(
+                        this,
+                        ProductAddActivity::class.java,
+                    )
+                startActivity(intent)
+            },
+        )
     }
 
     fun setBottomNavigationView() {
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nv_home -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_container, HomeFragment()).commit()
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.main_container, HomeFragment())
+                        .commit()
                     true
                 }
 
                 R.id.nv_dong_nae_life -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_container, DongNaeFragment()).commit()
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.main_container, DongNaeFragment())
+                        .commit()
                     true
                 }
 
                 R.id.nv_chatting -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_container, ChattingFragment()).commit()
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.main_container, ChattingFragment())
+                        .commit()
                     true
                 }
 
                 R.id.nv_setting -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_container, SettingFragment()).commit()
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.main_container, SettingFragment())
+                        .commit()
                     true
                 }
 

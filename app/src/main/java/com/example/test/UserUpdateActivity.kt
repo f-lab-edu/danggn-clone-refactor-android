@@ -1,13 +1,13 @@
-//package com.example.test
+// package com.example.test
 //
-//import android.content.Intent
-//import android.os.Bundle
-//import android.widget.Toast
-//import androidx.appcompat.app.AppCompatActivity
-//import com.example.freemarket.dao.ProductDao
-//import com.example.freemarket.databinding.ActivityUserUpdateBinding
+// import android.content.Intent
+// import android.os.Bundle
+// import android.widget.Toast
+// import androidx.appcompat.app.AppCompatActivity
+// import com.example.freemarket.dao.ProductDao
+// import com.example.freemarket.databinding.ActivityUserUpdateBinding
 //
-//class UserUpdateActivity : AppCompatActivity() {
+// class UserUpdateActivity : AppCompatActivity() {
 //
 //    private lateinit var binding: ActivityUserUpdateBinding
 //
@@ -68,4 +68,4 @@
 //            }
 //        }
 //    }
-//}
+// }

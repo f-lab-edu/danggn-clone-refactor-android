@@ -15,27 +15,27 @@ class ProductSelectUpdateActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        //데이터 담기
+        // 데이터 담기
         val productSubject = intent.getStringExtra("productSubject")!!
         val productPrice = intent.getStringExtra("productPrice")!!
         val productLocation = intent.getStringExtra("productLocation")!!
         val productContent = intent.getStringExtra("productContent")
         val productKey = intent.getStringExtra("productKey")!!
 
-
-        //데이터 보여주기
+        // 데이터 보여주기
         binding.tvProductSelectUpdateSubject.setText(productSubject)
         binding.tvProductSelectUpdatePrice.setText(productPrice)
         binding.tvProductSelectUpdateLocation.setText(productLocation)
         binding.tvProductSelectUpdateContent.setText(productContent)
-        binding.imvHomeProductItemDialog.setOnClickListener(View.OnClickListener {
-            updateDeleteOpenDialog(productKey)
-        })
+        binding.imvHomeProductItemDialog.setOnClickListener(
+            View.OnClickListener {
+                updateDeleteOpenDialog(productKey)
+            },
+        )
     }
 
-
-    fun updateDeleteOpenDialog(key:String) {
+    fun updateDeleteOpenDialog(key: String) {
         val dialog = UpdateDeleteDialog()
-        dialog.showDialog(this,key)
+        dialog.showDialog(this, key)
     }
 }

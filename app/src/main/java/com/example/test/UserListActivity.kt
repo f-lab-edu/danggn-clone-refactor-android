@@ -1,18 +1,18 @@
-//package com.example.test
+// package com.example.test
 //
-//import android.os.Bundle
-//import android.widget.Toast
-//import androidx.appcompat.app.AppCompatActivity
-//import androidx.recyclerview.widget.ItemTouchHelper
-//import androidx.recyclerview.widget.LinearLayoutManager
-//import androidx.recyclerview.widget.RecyclerView
-//import com.example.freemarket.dao.ProductDao
-//import com.example.freemarket.databinding.ActivityUserListBinding
-//import com.example.freemarket.dto.ProductDto
-//import com.google.firebase.database.DataSnapshot
-//import com.google.firebase.database.DatabaseError
-//import com.google.firebase.database.ValueEventListener
-//class UserListActivity : AppCompatActivity() {
+// import android.os.Bundle
+// import android.widget.Toast
+// import androidx.appcompat.app.AppCompatActivity
+// import androidx.recyclerview.widget.ItemTouchHelper
+// import androidx.recyclerview.widget.LinearLayoutManager
+// import androidx.recyclerview.widget.RecyclerView
+// import com.example.freemarket.dao.ProductDao
+// import com.example.freemarket.databinding.ActivityUserListBinding
+// import com.example.freemarket.dto.ProductDto
+// import com.google.firebase.database.DataSnapshot
+// import com.google.firebase.database.DatabaseError
+// import com.google.firebase.database.ValueEventListener
+// class UserListActivity : AppCompatActivity() {
 //
 //    lateinit var binding: ActivityUserListBinding
 //
@@ -111,4 +111,4 @@
 //        userList.get(position).setChatting_room_msg("삭제 되었습니다")
 //        notifyItemChanged(position) //갱신
 //    }
-//}
+// }
