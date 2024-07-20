@@ -1,17 +1,17 @@
-//package com.example.test
+// package com.example.test
 //
-//import android.app.Activity
-//import android.content.Context
-//import android.content.Intent
-//import android.view.LayoutInflater
-//import android.view.View
-//import android.view.ViewGroup
-//import android.widget.TextView
-//import androidx.recyclerview.widget.RecyclerView
-//import com.example.freemarket.R
-//import com.example.freemarket.dto.ProductDto
+// import android.app.Activity
+// import android.content.Context
+// import android.content.Intent
+// import android.view.LayoutInflater
+// import android.view.View
+// import android.view.ViewGroup
+// import android.widget.TextView
+// import androidx.recyclerview.widget.RecyclerView
+// import com.example.freemarket.R
+// import com.example.freemarket.dto.ProductDto
 //
-//class UserAdapter(private val context: Context, private val userList:ArrayList<ProductDto>):
+// class UserAdapter(private val context: Context, private val userList:ArrayList<ProductDto>):
 //    RecyclerView.Adapter<UserAdapter.UserViewHolder>(){
 //
 //    //화면 설정
@@ -54,4 +54,4 @@
 //        val nameText: TextView = itemView.findViewById(R.id.name_text)
 //        val ageText: TextView = itemView.findViewById(R.id.age_text)
 //    }
-//}
+// }

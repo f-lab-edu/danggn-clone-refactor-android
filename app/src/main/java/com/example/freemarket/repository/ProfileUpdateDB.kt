@@ -1,27 +1,33 @@
 package com.example.freemarket.repository
 
-import android.app.Activity
 import android.content.Context
 import android.net.Uri
 import android.widget.Toast
 import com.example.freemarket.SignUpAndUpdateActivity
 import com.example.freemarket.dao.ProfileDao
-import com.example.freemarket.dto.ProfileDto
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
 class ProfileUpdateDB {
-    fun profileUpdate(context: Context,activity: SignUpAndUpdateActivity, existingKey: String, name: String, uri: Uri) {
+    fun profileUpdate(
+        context: Context,
+        activity: SignUpAndUpdateActivity,
+        existingKey: String,
+        name: String,
+        uri: Uri,
+    ) {
         val storageRef: StorageReference
         val localDB = LocalDB()
         storageRef = FirebaseStorage.getInstance().getReference("profileImage")
 
         uri.let {
-            storageRef.child(existingKey).putFile(it)
+            storageRef
+                .child(existingKey)
+                .putFile(it)
                 .addOnSuccessListener { task ->
-                    task.metadata!!.reference!!.downloadUrl
+                    task.metadata!!
+                        .reference!!
+                        .downloadUrl
                         .addOnSuccessListener { url ->
 
                             val imgUrl = url.toString()
@@ -32,20 +38,24 @@ class ProfileUpdateDB {
                             hasMap["name"] = name
                             hasMap["imgUri"] = imgUrl
 
-                            //사용자 업데이트 이벤트
-                            dao.update(existingKey, hasMap).addOnSuccessListener {
-                                Toast.makeText(
-                                    context, "수정 되었습니다",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-
-                            }.addOnFailureListener {
-                                Toast.makeText(
-                                    context, "수정 실패: ${it.message}",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
-
+                            // 사용자 업데이트 이벤트
+                            dao
+                                .update(existingKey, hasMap)
+                                .addOnSuccessListener {
+                                    Toast
+                                        .makeText(
+                                            context,
+                                            "수정 되었습니다",
+                                            Toast.LENGTH_SHORT,
+                                        ).show()
+                                }.addOnFailureListener {
+                                    Toast
+                                        .makeText(
+                                            context,
+                                            "수정 실패: ${it.message}",
+                                            Toast.LENGTH_SHORT,
+                                        ).show()
+                                }
                         }
                 }
         }

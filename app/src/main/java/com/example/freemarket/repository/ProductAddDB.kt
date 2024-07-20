@@ -2,8 +2,7 @@ package com.example.freemarket.repository
 
 import android.annotation.SuppressLint
 
-
-//밑에 두개의 차이점은 무엇일까?
+// 밑에 두개의 차이점은 무엇일까?
 import android.content.Context
 import android.net.Uri
 import android.widget.Toast
@@ -18,7 +17,7 @@ import com.google.firebase.storage.storage
 import java.text.SimpleDateFormat
 import java.util.Date
 
-//import com.google.firebase.database.core.Context
+// import com.google.firebase.database.core.Context
 
 class ProductAddDB {
     fun productAdding(
@@ -29,7 +28,7 @@ class ProductAddDB {
         productLocation: String,
         productContent: String,
         productImage: ArrayList<Uri>,
-        productCategory: String
+        productCategory: String,
     ) {
         val storageRef: StorageReference
         storageRef = FirebaseStorage.getInstance().getReference("product_image")
@@ -39,9 +38,12 @@ class ProductAddDB {
         val contactId = databaseReference.push().key!!
 
         productImage.let { it ->
-            storageRef.putFile(it.get(0))
+            storageRef
+                .putFile(it.get(0))
                 .addOnSuccessListener { task ->
-                    task.metadata!!.reference!!.downloadUrl
+                    task.metadata!!
+                        .reference!!
+                        .downloadUrl
                         .addOnSuccessListener { url ->
                             val imgUrl = url.toString()
                             val product =
@@ -52,26 +54,27 @@ class ProductAddDB {
                                     productContent,
                                     imgUrl,
                                     productCategory,
-                                    contactId
+                                    contactId,
                                 )
 
-                            databaseReference.child(contactId).setValue(product)
+                            databaseReference
+                                .child(contactId)
+                                .setValue(product)
                                 .addOnCompleteListener {
                                     Toast.makeText(context, "등록 성공", Toast.LENGTH_SHORT).show()
                                     activity.finish()
+                                }.addOnFailureListener { error ->
+                                    Toast
+                                        .makeText(
+                                            context,
+                                            "등록 실패",
+                                            Toast.LENGTH_SHORT,
+                                        ).show()
                                 }
-                                .addOnFailureListener { error ->
-                                    Toast.makeText(
-                                        context,
-                                        "등록 실패", Toast.LENGTH_SHORT
-                                    ).show()
-                                }
-
-
                         }
                 }
             for (i in 0 until it.count()) {
-                imageUpload(it.get(i), i,contactId)
+                imageUpload(it.get(i), i, contactId)
                 try {
                     Thread.sleep(500)
                 } catch (e: InterruptedException) {
@@ -81,22 +84,26 @@ class ProductAddDB {
         }
     }
 
-
-    private fun imageUpload(uri: Uri, count: Int, contactId: String) {
+    private fun imageUpload(
+        uri: Uri,
+        count: Int,
+        contactId: String,
+    ) {
         // storage 인스턴스 생성
         val storage = Firebase.storage
         // storage 참조
         val storageRef = storage.getReference("product_image/")
         // storage에 저장할 파일명 선언
-        val fileName = SimpleDateFormat("yyyyMMddHHmmss_${count}").format(Date())
+        val fileName = SimpleDateFormat("yyyyMMddHHmmss_$count").format(Date())
 //            .child("${fileName}.png")
-        val mountainsRef = storageRef.child(contactId).child("${fileName}.png")
+        val mountainsRef = storageRef.child(contactId).child("$fileName.png")
         val uploadTask = mountainsRef.putFile(uri)
 
-        uploadTask.addOnSuccessListener { taskSnapshot ->
-            // 파일 업로드 성공
-        }.addOnFailureListener {
-            // 파일 업로드 실패
-        }
+        uploadTask
+            .addOnSuccessListener { taskSnapshot ->
+                // 파일 업로드 성공
+            }.addOnFailureListener {
+                // 파일 업로드 실패
+            }
     }
 }

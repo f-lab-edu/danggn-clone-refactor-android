@@ -1,31 +1,31 @@
-//package com.example.test
+// package com.example.test
 //
-//import android.R
-//import android.annotation.SuppressLint
-//import android.app.PendingIntent.getActivity
-//import android.content.Intent
-//import android.net.Uri
-//import android.os.Bundle
-//import android.provider.MediaStore
-//import android.view.View
-//import android.webkit.MimeTypeMap
-//import android.widget.ImageView
-//import android.widget.ProgressBar
-//import android.widget.Toast
-//import androidx.activity.result.ActivityResultCallback
-//import androidx.activity.result.ActivityResultLauncher
-//import androidx.activity.result.contract.ActivityResultContracts
-//import androidx.appcompat.app.AppCompatActivity
-//import com.example.freemarket.databinding.ActivityMain3Binding
-//import com.google.firebase.Firebase
-//import com.google.firebase.database.FirebaseDatabase
-//import com.google.firebase.storage.FirebaseStorage
-//import com.google.firebase.storage.storage
-//import java.text.SimpleDateFormat
-//import java.util.Date
+// import android.R
+// import android.annotation.SuppressLint
+// import android.app.PendingIntent.getActivity
+// import android.content.Intent
+// import android.net.Uri
+// import android.os.Bundle
+// import android.provider.MediaStore
+// import android.view.View
+// import android.webkit.MimeTypeMap
+// import android.widget.ImageView
+// import android.widget.ProgressBar
+// import android.widget.Toast
+// import androidx.activity.result.ActivityResultCallback
+// import androidx.activity.result.ActivityResultLauncher
+// import androidx.activity.result.contract.ActivityResultContracts
+// import androidx.appcompat.app.AppCompatActivity
+// import com.example.freemarket.databinding.ActivityMain3Binding
+// import com.google.firebase.Firebase
+// import com.google.firebase.database.FirebaseDatabase
+// import com.google.firebase.storage.FirebaseStorage
+// import com.google.firebase.storage.storage
+// import java.text.SimpleDateFormat
+// import java.util.Date
 //
 //
-//class MainActivity3 : AppCompatActivity() {
+// class MainActivity3 : AppCompatActivity() {
 //    private lateinit var uri: Uri
 //    private val binding: ActivityMain3Binding by lazy {
 //        ActivityMain3Binding.inflate(layoutInflater)
@@ -38,16 +38,16 @@
 //        //프로그래스바 숨기기
 //
 //        // 이미지뷰를 눌렀을 경우
-////        binding.imageArea.setOnClickListener {
-////            // ACTION_PICK을 사용하여 앨범을 호출한다.
-////            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
-////            registerForActivityResult.launch(intent)
-////        }
+// //        binding.imageArea.setOnClickListener {
+// //            // ACTION_PICK을 사용하여 앨범을 호출한다.
+// //            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+// //            registerForActivityResult.launch(intent)
+// //        }
 //
 //        // 등록하기 버튼을 눌렀을 경우
 //        binding.btnRegister.setOnClickListener {
 //            selectImage()
-////            imageUpload(uri)
+// //            imageUpload(uri)
 //        }
 //
 //
@@ -76,11 +76,11 @@
 //    }
 //
 //    fun selectImage(){
-//<<<<<<< HEAD
+// <<<<<<< HEAD
 //        val registerForActivityResult =
-//=======
+// =======
 //       val registerForActivityResult =
-//>>>>>>> main
+// >>>>>>> main
 //            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
 //                when (result.resultCode) {
 //                    AppCompatActivity.RESULT_OK -> {
@@ -92,4 +92,4 @@
 //                }
 //            }
 //    }
-//}
+// }

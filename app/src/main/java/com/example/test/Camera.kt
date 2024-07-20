@@ -9,12 +9,9 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Button
 import android.widget.ImageView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.freemarket.R
 
 class Camera : AppCompatActivity() {
@@ -29,7 +26,6 @@ class Camera : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_camera)
 
-
         // XML 레이아웃에서 ImageView 및 Button 참조
         imageView = findViewById(R.id.imageView)
         openCameraButton = findViewById(R.id.openCameraButton)
@@ -41,20 +37,19 @@ class Camera : AppCompatActivity() {
         }
     }
 
-
     // 카메라 권한 확인 및 요청
     private fun checkCameraPermission() {
         // 카메라 권한이 부여되었는지 확인
         if (ContextCompat.checkSelfPermission(
                 this,
-                Manifest.permission.CAMERA
+                Manifest.permission.CAMERA,
             ) != PackageManager.PERMISSION_GRANTED
         ) {
             // 권한이 없다면 권한 요청
             ActivityCompat.requestPermissions(
                 this,
                 arrayOf(Manifest.permission.CAMERA),
-                CAMERA_PERMISSION_CODE
+                CAMERA_PERMISSION_CODE,
             )
         } else {
             // 권한이 이미 허용되었다면 사진 촬영 진행
@@ -73,7 +68,7 @@ class Camera : AppCompatActivity() {
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
-        grantResults: IntArray
+        grantResults: IntArray,
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == CAMERA_PERMISSION_CODE) {
@@ -88,7 +83,11 @@ class Camera : AppCompatActivity() {
     }
 
     // 찍은 사진 결과 표시
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    override fun onActivityResult(
+        requestCode: Int,
+        resultCode: Int,
+        data: Intent?,
+    ) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             // 사진 찍기 완료 후 결과 이미지를 ImageView에 설정

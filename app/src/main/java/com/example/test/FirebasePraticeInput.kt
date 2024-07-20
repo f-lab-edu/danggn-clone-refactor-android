@@ -1,24 +1,24 @@
-//package com.example.test
+// package com.example.test
 //
-//import android.annotation.SuppressLint
-//import android.content.Intent
-//import android.os.Bundle
-//import android.view.View
-//import android.widget.Button
-//import android.widget.EditText
-//import android.widget.Toast
-//import androidx.appcompat.app.AppCompatActivity
-//import com.example.freemarket.R
-//import com.google.android.gms.tasks.OnCompleteListener
-//import com.google.firebase.Firebase
-//import com.google.firebase.auth.FirebaseAuth
-//import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
-//import com.google.firebase.auth.PhoneAuthCredential
-//import com.google.firebase.auth.PhoneAuthProvider
+// import android.annotation.SuppressLint
+// import android.content.Intent
+// import android.os.Bundle
+// import android.view.View
+// import android.widget.Button
+// import android.widget.EditText
+// import android.widget.Toast
+// import androidx.appcompat.app.AppCompatActivity
+// import com.example.freemarket.R
+// import com.google.android.gms.tasks.OnCompleteListener
+// import com.google.firebase.Firebase
+// import com.google.firebase.auth.FirebaseAuth
+// import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+// import com.google.firebase.auth.PhoneAuthCredential
+// import com.google.firebase.auth.PhoneAuthProvider
 //
-//import com.google.firebase.database.database
+// import com.google.firebase.database.database
 //
-//class FirebasePraticeInput : AppCompatActivity() {
+// class FirebasePraticeInput : AppCompatActivity() {
 //    lateinit var auth: FirebaseAuth
 //
 //    @SuppressLint("MissingInflatedId")
@@ -59,28 +59,28 @@
 //    }
 //
 //
-////    fun addDb(et12:String , et22:String){
-//////해시맵 선언
-////        val result: HashMap<String, String> = HashMap()
-////        val et1 =
-////            findViewById<EditText>(R.id.et_1firebase)
-////        val et2 =
-////            findViewById<EditText>(R.id.et_2firebase)
-////        //요소 추가
-////        result.put("et1", et12)
-////        result.put("et2", et22)
-////
-////        val database = Firebase.database
-////        val myRef = database.getReference("message")
-////
-////        val key = myRef.push().key
-////        key?.let { result.put("key", it) }
-////        if (key != null) {
-////            myRef.child(key).setValue(result).addOnCompleteListener(OnCompleteListener {
-////                et1.text.clear()
-////                et2.text.clear()
-////            })
-////        }
-////
-////    }
-//}
+// //    fun addDb(et12:String , et22:String){
+// ////해시맵 선언
+// //        val result: HashMap<String, String> = HashMap()
+// //        val et1 =
+// //            findViewById<EditText>(R.id.et_1firebase)
+// //        val et2 =
+// //            findViewById<EditText>(R.id.et_2firebase)
+// //        //요소 추가
+// //        result.put("et1", et12)
+// //        result.put("et2", et22)
+// //
+// //        val database = Firebase.database
+// //        val myRef = database.getReference("message")
+// //
+// //        val key = myRef.push().key
+// //        key?.let { result.put("key", it) }
+// //        if (key != null) {
+// //            myRef.child(key).setValue(result).addOnCompleteListener(OnCompleteListener {
+// //                et1.text.clear()
+// //                et2.text.clear()
+// //            })
+// //        }
+// //
+// //    }
+// }
