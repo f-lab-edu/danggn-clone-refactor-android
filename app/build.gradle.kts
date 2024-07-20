@@ -4,6 +4,7 @@ plugins {
     id("com.google.gms.google-services")
     // for Java or mixed Java and Kotlin
     id("androidx.navigation.safeargs.kotlin")
+    id("org.jmailen.kotlinter") version "4.4.1"
 }
 
 
